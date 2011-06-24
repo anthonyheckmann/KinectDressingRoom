@@ -22,7 +22,7 @@ public class BodyJoint {
 	public BodyJoint () {
 	}
 	
-	public BodyJoint (string name, Vector3 position, Quaternion rotation, Vector3 direction, float length, float radius) {
+	public BodyJoint(string name, Vector3 position, Quaternion rotation, Vector3 direction, float length, float radius) {
 		//create joint transform
 		joint = new GameObject(name);
 		transform = joint.transform;
@@ -35,11 +35,29 @@ public class BodyJoint {
 		bone.transform.localPosition = 0.5F * length * direction.normalized;
 		bone.transform.localRotation = Quaternion.LookRotation(-Vector3.forward, direction);
 		
+		//Only to get the mesh of a capsule
+		GameObject capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+		MeshFilter meshf = capsule.GetComponent<MeshFilter>();
+		
+		//create mesh filter
+		bone.AddComponent("MeshFilter");
+		MeshFilter boneMFilter = bone.GetComponent<MeshFilter>();
+		boneMFilter.mesh = meshf.mesh;
+		
+		GameObject.Destroy(capsule);
+		
+		bone.AddComponent("MeshRenderer");
+		MeshRenderer boneMRenderer = bone.GetComponent<MeshRenderer>();
+		boneMRenderer.material = Resources.Load("boneMaterial", typeof(Material)) as Material;
+		
+		//convert radius and length to scale
+		bone.transform.localScale = new Vector3(2.0F * radius, (length/2.0F) + radius, 2.0F * radius);
+		
 		//create collider
 		bone.AddComponent("CapsuleCollider");
-		CapsuleCollider boneCollider = bone.GetComponent<CapsuleCollider>();
-		boneCollider.radius = radius;
-		boneCollider.height = length + (2.0F * radius);
+		//CapsuleCollider boneCollider = bone.GetComponent<CapsuleCollider>();
+		//boneCollider.radius = radius;
+		//boneCollider.height = length + (2.0F * radius);
 		
 		//hack for clothe att
 		this.radius = radius;
@@ -204,7 +222,7 @@ public class UserBody {
 		niteController.Update(); // NiteWrapper does not have the new transforms yet
 		
 		// TODO: get radius
-		float upperLegRadius = 0.1F, lowerLegRadius = 0.1F, neckRadius = 0.01F;
+		float upperLegRadius = 0.075F, lowerLegRadius = 0.06F, neckRadius = 0.05F;
 
 		//get positions of left arm parts
 		Vector3 leftShoulderPos, leftElbowPos, leftHandPos;
