@@ -200,15 +200,15 @@ public class NiteGUI {
 	Rect usersImageRect;
 		
 	GUITexture bg;		
-	Thread depth_Thread;
-	Thread image_Thread;
+//	Thread depth_Thread;
+//	Thread image_Thread;
 //	short startAngle;
 	
 	public NiteGUI(NiteController niteController) {	
-		depth_Thread = new Thread(new ThreadStart(this.updateusermap));
-		image_Thread = new Thread(new ThreadStart(this.updatergbimage));
-		depth_Thread.Start();	
-		image_Thread.Start();	
+		//depth_Thread = new Thread(new ThreadStart(this.updateusermap));
+		//image_Thread = new Thread(new ThreadStart(this.updatergbimage));
+		//depth_Thread.Start();	
+		//image_Thread.Start();	
 		this.niteController = niteController;
 		
 //		// Setting the Kinect in certain angle
@@ -236,12 +236,82 @@ public class NiteGUI {
 		bg = GameObject.Find("Background Image").GetComponent<GUITexture>();	
 	}
 	
-	private void updateusermap() {	
-		while(true) 
-		{
-			depth_Thread.Suspend();
+//	private void updateusermap() {	
+//		while(true) 
+//		{
+//			depth_Thread.Suspend();
+//			if(!niteController.kinectConnect){
+//				continue;
+//			}
+//			
+//			// copy over the maps
+//	        Marshal.Copy(NiteWrapper.GetUsersLabelMap(), usersLabelMap, 0, usersMapSize);
+//	        Marshal.Copy(NiteWrapper.GetUsersDepthMap(), usersDepthMap, 0, usersMapSize);
+//	
+//	        // we will be flipping the texture as we convert label map to color array
+//	        int flipIndex, i;
+//	        int numOfPoints = 0;
+//			Array.Clear(usersHistogramMap, 0, usersHistogramMap.Length);
+//	
+//	        // calculate cumulative histogram for depth
+//	        for (i = 0; i < usersMapSize; i++)
+//	        {
+//	            // only calculate for depth that contains users
+//	            if (usersLabelMap[i] != 0)
+//	            {
+//	                usersHistogramMap[usersDepthMap[i]]++;
+//	                numOfPoints++;
+//	            }
+//	        }
+//	        if (numOfPoints > 0)
+//	        {
+//	            for (i = 1; i < usersHistogramMap.Length; i++)
+//		        {   
+//			        usersHistogramMap[i] += usersHistogramMap[i-1];
+//		        }
+//	            for (i = 0; i < usersHistogramMap.Length; i++)
+//		        {
+//	                usersHistogramMap[i] = 1.0f - (usersHistogramMap[i] / numOfPoints);
+//		        }
+//	        }
+//	
+//	        // create the actual users texture based on label map and depth histogram
+//	        for (i = 0; i < usersMapSize; i++)
+//	        {
+//	            flipIndex = usersMapSize - i - 1;
+//	            if (usersLabelMap[i] == 0)
+//	            {
+//	                usersMapColors[flipIndex] = Color.clear;
+//	            }
+//	            else
+//	            {
+//	                // create a blending color based on the depth histogram
+//	                Color c = new Color(usersHistogramMap[usersDepthMap[i]], usersHistogramMap[usersDepthMap[i]], usersHistogramMap[usersDepthMap[i]], 0.9f);
+//	                switch (usersLabelMap[i] % 4)
+//	                {
+//	                    case 0:
+//	                        usersMapColors[flipIndex] = Color.red * c;
+//	                        break;
+//	                    case 1:
+//	                        usersMapColors[flipIndex] = Color.green * c;
+//	                        break;
+//	                    case 2:
+//	                        usersMapColors[flipIndex] = Color.blue * c;
+//	                        break;
+//	                    case 3:
+//	                        usersMapColors[flipIndex] = Color.magenta * c;
+//	                        break;
+//	                }
+//	            }
+//	        }		
+//		}
+//	}
+	
+	public void UpdateUserMap() {	
+		//depth_Thread.Resume();
+		
 			if(!niteController.kinectConnect){
-				continue;
+				return;
 			}
 			
 			// copy over the maps
@@ -304,40 +374,45 @@ public class NiteGUI {
 	                }
 	            }
 	        }		
-		}
-	}
-	
-	public void UpdateUserMap() {	
-		depth_Thread.Resume();
 
         usersLblTex.SetPixels(usersMapColors);
         usersLblTex.Apply();
 	}
 	
-	public void updatergbimage() {
-		while(true) 
-		{
-			image_Thread.Suspend();
-			Marshal.Copy(NiteWrapper.getRGB(), image, 0, RGBwidth*RGBheight*3);
-			int p = 0;
-			int flipIndex;
-			
-			int usersMapSize = 640*480;		  
-			
-			for (int i = 0; i < usersMapSize; i++) {
-				flipIndex = usersMapSize - i - 1;
-				Color c = new Color((float)image[p++]/255f,(float)image[p++]/255f,(float)image[p++]/255f);
-				usersImageColors[flipIndex] = c;
-	        }
-		}
-	}
+//	public void updatergbimage() {
+//		while(true) 
+//		{
+//			image_Thread.Suspend();
+//			Marshal.Copy(NiteWrapper.getRGB(), image, 0, RGBwidth*RGBheight*3);
+//			int p = 0;
+//			int flipIndex;
+//			
+//			int usersMapSize = 640*480;		  
+//			
+//			for (int i = 0; i < usersMapSize; i++) {
+//				flipIndex = usersMapSize - i - 1;
+//				Color c = new Color((float)image[p++]/255f,(float)image[p++]/255f,(float)image[p++]/255f);
+//				usersImageColors[flipIndex] = c;
+//	        }
+//		}
+//	}
 	
 	public void UpdateRgbImage() {
-		if (image_Thread.ThreadState == ThreadState.Suspended) {
-			image_Thread.Resume();
-		}
-//		Thread oThread = new Thread(new ThreadStart(this.updatergbimage));
-//		oThread.Start();
+//		if (image_Thread.ThreadState == ThreadState.Suspended) {
+//			image_Thread.Resume();
+//		}
+		
+		Marshal.Copy(NiteWrapper.getRGB(), image, 0, RGBwidth*RGBheight*3);
+		int p = 0;
+		int flipIndex;
+		
+		int usersMapSize = 640*480;		  
+		
+		for (int i = 0; i < usersMapSize; i++) {
+			flipIndex = usersMapSize - i - 1;
+			Color c = new Color((float)image[p++]/255f,(float)image[p++]/255f,(float)image[p++]/255f);
+			usersImageColors[flipIndex] = c;
+        }
 		
 		usersImageTex.SetPixels(usersImageColors);
         usersImageTex.Apply();
