@@ -147,6 +147,8 @@ public class NiteWrapper
     public static extern int getRGBHeight();
     [DllImport("UnityInterface.dll")]
 	public static extern IntPtr getFatness(int player, int type,ref int size, ref int length); //
+    [DllImport("UnityInterface.dll")]
+    public static extern double getIntensity(int user);
 	
 	[DllImport("UnityInterface.dll")]
     public static extern void SetSkeletonSmoothing(double factor);
@@ -396,6 +398,9 @@ public class NiteGUI {
 //	        }
 //		}
 //	}
+	double[] intensity = new double[10];
+	int p_intensity = 0;
+	double total_intensity = 0;
 	
 	public void UpdateRgbImage() {
 //		if (image_Thread.ThreadState == ThreadState.Suspended) {
@@ -417,6 +422,15 @@ public class NiteGUI {
 		usersImageTex.SetPixels(usersImageColors);
         usersImageTex.Apply();
 		bg.texture = usersImageTex;
+		
+		double I = NiteWrapper.getIntensity(niteController.getCurrentUser());	
+		total_intensity -= intensity[p_intensity];
+		total_intensity += I;
+		intensity[p_intensity] = I;
+		p_intensity = (p_intensity > 8)? 0 : p_intensity+1;
+		
+		Light light = GameObject.Find("Point light").GetComponent<Light>();	
+		light.intensity = 8*(float)(total_intensity/10.0);
 	}
 	
 	public void DrawUserMap() {
@@ -594,5 +608,9 @@ public class NiteController {
 			//gui.DrawUserMap();
 		}
 		//gui.DrawCameraImage();
+	}
+			
+	public int getCurrentUser() {
+		return (int)calibratedUserId;				
 	}
 }
