@@ -430,7 +430,7 @@ public class NiteGUI {
 		p_intensity = (p_intensity > 8)? 0 : p_intensity+1;
 		
 		Light light = GameObject.Find("Point light").GetComponent<Light>();	
-		light.intensity = 8*(float)(total_intensity/10.0);
+		light.intensity = 1*(float)(total_intensity/10.0);
 	}
 	
 	public void DrawUserMap() {
@@ -440,6 +440,13 @@ public class NiteGUI {
 	public void DrawCameraImage() {
 		GUI.DrawTexture(usersImageRect, usersImageTex);
 	}
+}
+
+public struct Rig {
+	public GameObject riggedObject;
+	public Dictionary<NiteWrapper.SkeletonJoint, Transform> jointMapping;
+	public Dictionary<NiteWrapper.SkeletonJoint, Quaternion> referenceOrientation;
+	public Transform torsoCenter, neck, leftShoulder, leftElbow, rightShoulder, rightElbow, leftHip, leftKnee, rightHip, rightKnee;
 }
 
 /* NiteController
@@ -453,7 +460,7 @@ public class NiteController {
 	public bool kinectConnect = false;
 	public bool calibratedUser = false;
 	
-	//The bodyslice depth maps and realworld diameter (in m)
+	//The bodyslice depth maps and realworld diameter (in m), measured during calibtration
 	public int[][] sizeData = new int[16][];
 	public float[] diameter = new float[16];
 	
@@ -474,6 +481,9 @@ public class NiteController {
     private NiteWrapper.UserDelegate UserLost;
 	
 	Thread scan_Thread;
+	
+	//Body rigs that are controlled by this controller, have to be registered
+	private List<Rig> registeredRigs;
 	
 	//Callback for when a new user has been calibrated
 	public delegate void NewUserCallback();
@@ -508,6 +518,9 @@ public class NiteController {
 		
 		// initialize gui
 		gui = new NiteGUI(this);
+		
+		// initialize list of rigs to animate
+		registeredRigs = new List<Rig>();
 	}
 	
 	void OnNewUser(uint UserId)
@@ -596,11 +609,103 @@ public class NiteController {
 	}
 	
 	public void Update() {
+		//update the skeleton, depth-, and rgb image
 		NiteWrapper.Update(true);
 		if (!calibratedUser) {
 			//gui.UpdateUserMap();
 		}
 		gui.UpdateRgbImage();
+		
+		List<Rig> destroyedRigs = new List<Rig>();
+		
+		//update the rigs controlled by this controller
+		foreach (Rig rig in registeredRigs) {
+		         
+		    Vector3 position;
+			Quaternion rotation;
+			
+			// Check if rig still exists:
+			if (rig.riggedObject != null) {
+				
+				// Update body location
+				if (GetJointPosition(NiteWrapper.SkeletonJoint.TORSO_CENTER, out position)) {
+					rig.jointMapping[NiteWrapper.SkeletonJoint.TORSO_CENTER].position = position;
+				}
+				
+				// Update the rotation for each joint
+				foreach (KeyValuePair<NiteWrapper.SkeletonJoint, Transform> pair in rig.jointMapping) {
+					if (GetJointOrientation(pair.Key, out rotation)) {
+					    pair.Value.rotation = rotation * rig.referenceOrientation[pair.Key];
+					}
+				}
+				
+//				// Update joint positions
+//				foreach (KeyValuePair<NiteWrapper.SkeletonJoint, Transform> pair in rig.jointMapping) {
+//					if (GetJointPosition(pair.Key, out position)) {
+//					    pair.Value.position = position;
+//					}
+//				}
+			} else {
+				destroyedRigs.Add(rig);
+			}
+		}
+		foreach (Rig rig in destroyedRigs) {
+			registeredRigs.Remove(rig);	
+		}
+	}
+	
+	// finds the correct bones and maps them to the joints
+	// returns true if register is succesful
+	//(if not, check if your transforms have the correct names and are children of the riggedObject)
+	public bool RegisterRig(GameObject riggedObject) {
+		// initialize the new rig
+		Rig rig = new Rig();
+		rig.riggedObject = riggedObject;
+		
+		// find all the body joint transforms
+		rig.torsoCenter = riggedObject.transform.Find("Torso_Center");
+		rig.neck = riggedObject.transform.Find("Torso_Center/Neck");
+		rig.leftShoulder = riggedObject.transform.Find("Torso_Center/Left_Shoulder");
+		rig.leftElbow = riggedObject.transform.Find("Torso_Center/Left_Shoulder/Left_Elbow");
+		rig.rightShoulder = riggedObject.transform.Find("Torso_Center/Right_Shoulder");
+		rig.rightElbow = riggedObject.transform.Find("Torso_Center/Right_Shoulder/Right_Elbow");
+		rig.leftHip = riggedObject.transform.Find("Torso_Center/Left_Hip");
+		rig.leftKnee = riggedObject.transform.Find("Torso_Center/Left_Hip/Left_Knee");
+		rig.rightHip = riggedObject.transform.Find("Torso_Center/Right_Hip");
+		rig.rightKnee = riggedObject.transform.Find("Torso_Center/Right_Hip/Right_Knee");
+		
+		// map the transforms to the Nite joints
+		rig.jointMapping = new Dictionary<NiteWrapper.SkeletonJoint, Transform>();
+		rig.jointMapping.Add(NiteWrapper.SkeletonJoint.NECK, rig.neck);
+		rig.jointMapping.Add(NiteWrapper.SkeletonJoint.LEFT_SHOULDER, rig.leftShoulder);
+		rig.jointMapping.Add(NiteWrapper.SkeletonJoint.LEFT_ELBOW, rig.leftElbow);
+		rig.jointMapping.Add(NiteWrapper.SkeletonJoint.RIGHT_SHOULDER, rig.rightShoulder);
+		rig.jointMapping.Add(NiteWrapper.SkeletonJoint.RIGHT_ELBOW, rig.rightElbow);
+		rig.jointMapping.Add(NiteWrapper.SkeletonJoint.TORSO_CENTER, rig.torsoCenter);
+		rig.jointMapping.Add(NiteWrapper.SkeletonJoint.LEFT_HIP, rig.leftHip);
+		rig.jointMapping.Add(NiteWrapper.SkeletonJoint.LEFT_KNEE, rig.leftKnee);
+		rig.jointMapping.Add(NiteWrapper.SkeletonJoint.RIGHT_HIP, rig.rightHip);
+		rig.jointMapping.Add(NiteWrapper.SkeletonJoint.RIGHT_KNEE, rig.rightKnee);
+		
+		// the orientation to take as origin for the joints
+		rig.referenceOrientation = new Dictionary<NiteWrapper.SkeletonJoint, Quaternion>();
+		
+		// check if all the transforms have been found and set their reference orientation
+		bool succes = true;
+		foreach (KeyValuePair<NiteWrapper.SkeletonJoint, Transform> pair in rig.jointMapping) {
+			if (pair.Value == null) {
+				succes = false;
+				break;
+			} else {
+				rig.referenceOrientation.Add(pair.Key, pair.Value.rotation);
+			}
+		}
+		
+		if (succes) {
+			registeredRigs.Add(rig);
+		}
+		
+		return succes;
 	}
 	
 	public void UpdateGUI () {

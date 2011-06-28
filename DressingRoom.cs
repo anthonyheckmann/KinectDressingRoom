@@ -56,8 +56,8 @@ public class DressingRoomGUI {
 	private ClothingManager clothingManager;
 	private Camera camera;
 	
-	public DressingRoomGUI () {
-		clothingManager = new ClothingManager("ClothesAttachments.xml");
+	public DressingRoomGUI (NiteController niteController) {
+		clothingManager = new ClothingManager(niteController);//"ClothesAttachments.xml");
 		camera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		currentSelections = new List<ClothingButton>();
 		
@@ -72,15 +72,15 @@ public class DressingRoomGUI {
 	}
 	
 	public void HandleUserEvent (UserBody userBody) {
-		userBody.pauseUpdate = true;
-		userBody.RotateToInitialPosition();
+		//userBody.pauseUpdate = true;
+		//userBody.RotateToInitialPosition();
 		foreach (ClothingButton button in currentSelections){
 			clothingManager.RemoveAllClothing();
-			clothingManager.AddClothing(button.label, userBody);
+			clothingManager.AddClothing(button.label);
 			button.currentSelectionTime = 0.0F;
 		}
 		currentSelections.Clear();
-		userBody.pauseUpdate = false;
+		//userBody.pauseUpdate = false;
 		userEvent = false;
 	}
 	
@@ -124,21 +124,33 @@ public class DressingRoom : MonoBehaviour {
 	private DressingRoomGUI gui;
 	private UserBody userBody;
 	private NiteController niteController;
+	private HandPositions handPositions;
 	
 	void Start () {
-		gui = new DressingRoomGUI();
 		niteController = new NiteController(new NiteController.NewUserCallback(this.OnNewUser));
+		gui = new DressingRoomGUI(niteController);
 		userBody = new UserBody();
 	}
 	
 	void Update () {
 		niteController.Update(); //update the depth image and skeleton tracker
 		if (niteController.calibratedUser) {
-			userBody.UpdateBody(niteController);
-			gui.UpdateSelection(userBody.handPositions);
+			//userBody.UpdateBody(niteController);
+			UpdateHandPositions();
+			gui.UpdateSelection(handPositions);
 			if (gui.userEvent) {
 				gui.HandleUserEvent(userBody);
 			}
+		}
+	}
+	
+	private void UpdateHandPositions () {
+		Vector3 leftHand, rightHand;
+		if (niteController.GetJointPosition(NiteWrapper.SkeletonJoint.LEFT_HAND, out leftHand)) {
+			handPositions.left = leftHand;
+		}
+		if (niteController.GetJointPosition(NiteWrapper.SkeletonJoint.RIGHT_HAND, out rightHand)) {
+			handPositions.right = rightHand;
 		}
 	}
 	
@@ -152,6 +164,6 @@ public class DressingRoom : MonoBehaviour {
 	}
 	
 	public void OnNewUser() {
-		userBody.InitBody(niteController);
+		//userBody.InitBody(niteController);
 	}
 }
