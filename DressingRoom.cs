@@ -135,7 +135,7 @@ public class DressingRoom : MonoBehaviour {
 	void Update () {
 		niteController.Update(); //update the depth image and skeleton tracker
 		if (niteController.calibratedUser) {
-			//userBody.UpdateBody(niteController);
+			userBody.UpdateBody(niteController);
 			UpdateHandPositions();
 			gui.UpdateSelection(handPositions);
 			if (gui.userEvent) {
@@ -164,6 +164,6 @@ public class DressingRoom : MonoBehaviour {
 	}
 	
 	public void OnNewUser() {
-		//userBody.InitBody(niteController);
+		userBody.InitBody(niteController);
 	}
 }

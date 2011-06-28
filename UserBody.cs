@@ -366,7 +366,7 @@ public class UserBody {
 //	}
 	
 	public void UpdateBody(NiteController niteController) {
-		if (!pauseUpdate) {
+		if (!pauseUpdate && niteController.calibratedUser) {
 			Vector3 position;
 			Quaternion rotation;
 			
