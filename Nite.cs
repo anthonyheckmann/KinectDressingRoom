@@ -620,8 +620,6 @@ public class NiteController {
 			NiteWrapper.SkeletonJointTransformation trans = new NiteWrapper.SkeletonJointTransformation();
         	NiteWrapper.GetJointTransformation(calibratedUserId, joint, ref trans);
 			
-			// Z coordinate in OpenNI is opposite from Unity. We will create a quat
-            // to rotate from OpenNI to Unity (relative to initial rotation)
             Vector3 worldZVec = new Vector3(trans.ori.m02, trans.ori.m12, trans.ori.m22);
             Vector3 worldYVec = new Vector3(trans.ori.m01, trans.ori.m11, trans.ori.m21);
             rotation = Quaternion.LookRotation(worldZVec, worldYVec);
