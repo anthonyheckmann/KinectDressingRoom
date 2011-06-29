@@ -9,8 +9,8 @@ public class ClothingManager {
 	private List<GameObject> addedClothing = new List<GameObject>();
 	
 //	public string [] clothing = {"Dress", "Hippy Trousers", "T-Shirt"};
-	public string [] clothing = {"Dress"};
-//	public string [] clothing = {};
+//	public string [] clothing = {"Dress", "Pants", "Jacket"};
+	public string [] clothing = {"DebugBody", "Jacket"};
 	
 	private NiteController niteController;
 	

@@ -622,8 +622,8 @@ public class NiteController {
 			
 			// Z coordinate in OpenNI is opposite from Unity. We will create a quat
             // to rotate from OpenNI to Unity (relative to initial rotation)
-            Vector3 worldZVec = new Vector3(trans.ori.m02, -trans.ori.m12, trans.ori.m22);
-            Vector3 worldYVec = new Vector3(-trans.ori.m01, trans.ori.m11, -trans.ori.m21);
+            Vector3 worldZVec = new Vector3(trans.ori.m02, trans.ori.m12, trans.ori.m22);
+            Vector3 worldYVec = new Vector3(trans.ori.m01, trans.ori.m11, trans.ori.m21);
             rotation = Quaternion.LookRotation(worldZVec, worldYVec);
 			return (trans.ori.confidence > confidenceThreshold);
 		}
@@ -639,8 +639,7 @@ public class NiteController {
         	NiteWrapper.GetJointTransformation(calibratedUserId, joint, ref trans);
 			
 			// Nite gives position in mm convert to Unity unit = meters
-			// Also x and y world vectors are inverse from Unity
-			position = new Vector3(-trans.pos.x/1000.0F, trans.pos.y/1000.0F, -trans.pos.z/1000.0F);
+			position = new Vector3(trans.pos.x/1000.0F, trans.pos.y/1000.0F, trans.pos.z/1000.0F);
 			return (trans.pos.confidence > confidenceThreshold);
 		}
 		else {
@@ -680,12 +679,12 @@ public class NiteController {
 					}
 				}
 				
-//				// Update joint positions
-//				foreach (KeyValuePair<NiteWrapper.SkeletonJoint, Transform> pair in rig.jointMapping) {
-//					if (GetJointPosition(pair.Key, out position)) {
-//					    pair.Value.position = position;
-//					}
-//				}
+				// Update joint positions
+				foreach (KeyValuePair<NiteWrapper.SkeletonJoint, Transform> pair in rig.jointMapping) {
+					if (GetJointPosition(pair.Key, out position)) {
+					    pair.Value.position = position;
+					}
+				}
 			} else {
 				destroyedRigs.Add(rig);
 			}
@@ -750,9 +749,9 @@ public class NiteController {
 	}
 	
 	public void UpdateGUI () {
-		if (clothSize != "") {
-			GUI.Box(new Rect(100,100,300,200), clothSize);
-		}
+//		if (clothSize != "") {
+//			GUI.Box(new Rect(100,100,300,200), clothSize);
+//		}
 		if (!calibratedUser) {
 			//gui.DrawUserMap();
 		}
