@@ -146,7 +146,7 @@ public class NiteWrapper
     [DllImport("UnityInterface.dll")]
     public static extern int getRGBHeight();
     [DllImport("UnityInterface.dll")]
-	public static extern IntPtr getFatness(int player, int type,ref int size, ref int length); //
+	public static extern IntPtr getFatness(int player, int type,ref int size, ref int length, ref double girth); //
     [DllImport("UnityInterface.dll")]
     public static extern double getIntensity(int user);
 	
@@ -481,6 +481,7 @@ public class NiteController {
     private NiteWrapper.UserDelegate UserLost;
 	
 	Thread scan_Thread;
+	String clothSize = "";
 	
 	//Body rigs that are controlled by this controller, have to be registered
 	private List<Rig> registeredRigs;
@@ -553,14 +554,54 @@ public class NiteController {
 				
 		int size = 0;	
 		int length = 0;
+		double[] girth = new double[16];
 		
 		for (int i = 0; i < 16; i++) {
-			IntPtr raw_data = NiteWrapper.getFatness((int)UserId,i, ref size, ref length);
+			IntPtr raw_data = NiteWrapper.getFatness((int)UserId,i, ref size, ref length, ref girth[i]);
 			int[] data = new int[size];	
 			Marshal.Copy(raw_data, data, 0, size);
 			sizeData[i] = data;
 			diameter[i] = (float)length/1000.0F; //convert from mm to m
 		}
+		
+		double[] chest_g = {girth[12], girth[13], girth[14], girth[15]};
+		bool done = false;
+		while(!done) {
+			done = true;
+			for (int i = 1; i < 4; i++) {
+				if (chest_g[i-1] > chest_g[i]) {
+					double temp = chest_g[i];
+					chest_g[i] = chest_g[i-1];
+					chest_g[i-1] = temp;
+					done = false;
+				}
+			}
+		}
+						
+		double ChestGirth = chest_g[0]/10;	
+		
+		if (ChestGirth < 70)
+			clothSize = ChestGirth + " is too small!";
+		else if (ChestGirth < 78)
+			clothSize = "XXS : extra extra small (" + ChestGirth + ")";
+		else if (ChestGirth < 86)
+			clothSize = "XS : extra small (" + ChestGirth + ")";
+		else if (ChestGirth < 94)
+			clothSize = "S : small (" + ChestGirth + ")";
+		else if (ChestGirth < 102)
+			clothSize = "M : medium (" + ChestGirth + ")";
+		else if (ChestGirth < 110)
+			clothSize = "L : large (" + ChestGirth + ")";
+		else if (ChestGirth < 118)
+			clothSize = "XL : extra large (" + ChestGirth + ")";
+		else if (ChestGirth < 129)
+			clothSize = "XXL : extra extra large (" + ChestGirth + ")";
+		else if (ChestGirth < 141)
+			clothSize = "3XL : extra extra extra large (" + ChestGirth + ")";
+		else 
+			clothSize = "You are yoo fat! (" + ChestGirth + ")";
+		
+		Debug.Log(clothSize);		
 		
 		this.onNewUser();
     }
@@ -709,6 +750,9 @@ public class NiteController {
 	}
 	
 	public void UpdateGUI () {
+		if (clothSize != "") {
+			GUI.Box(new Rect(100,100,300,200), clothSize);
+		}
 		if (!calibratedUser) {
 			//gui.DrawUserMap();
 		}
