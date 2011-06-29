@@ -35,26 +35,28 @@ public class BodyJoint {
 		bone.transform.localPosition = 0.5F * length * direction.normalized;
 		bone.transform.localRotation = Quaternion.LookRotation(-Vector3.forward, direction);
 		
-		//Only to get the mesh of a capsule
-		GameObject capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-		MeshFilter meshf = capsule.GetComponent<MeshFilter>();
 		
-		//create mesh filter
-		bone.AddComponent("MeshFilter");
-		MeshFilter boneMFilter = bone.GetComponent<MeshFilter>();
-		boneMFilter.mesh = meshf.mesh;
-		
-		GameObject.Destroy(capsule);
-		
-		bone.AddComponent("MeshRenderer");
-		MeshRenderer boneMRenderer = bone.GetComponent<MeshRenderer>();
-		boneMRenderer.material = Resources.Load("boneMaterial", typeof(Material)) as Material;
-		
+		if (name.Contains("Shoulder") || name.Contains("Elbow")){
+			//Only to get the mesh of a capsule
+			GameObject capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+			MeshFilter meshf = capsule.GetComponent<MeshFilter>();
+			
+			//create mesh filter
+			bone.AddComponent("MeshFilter");
+			MeshFilter boneMFilter = bone.GetComponent<MeshFilter>();
+			boneMFilter.mesh = meshf.mesh;
+			
+			GameObject.Destroy(capsule);
+			
+			bone.AddComponent("MeshRenderer");
+			MeshRenderer boneMRenderer = bone.GetComponent<MeshRenderer>();
+			boneMRenderer.material = Resources.Load("boneMaterial", typeof(Material)) as Material;
+		}
 		//convert radius and length to scale
 		bone.transform.localScale = new Vector3(2.0F * radius, (length/2.0F) + radius, 2.0F * radius);
 		
 		//create collider
-		bone.AddComponent("CapsuleCollider");
+		//bone.AddComponent("CapsuleCollider");
 		//CapsuleCollider boneCollider = bone.GetComponent<CapsuleCollider>();
 		//boneCollider.radius = radius;
 		//boneCollider.height = length + (2.0F * radius);
@@ -216,6 +218,7 @@ public class UserBody {
 	// root of the body transform hierarchy and joint mappings
 	private Transform userBody;
 	private Dictionary<NiteWrapper.SkeletonJoint, BodyJoint> skeletonJointMapping;
+	public int size = -1;
 	
 	public void InitBody(NiteController niteController) {
 		Debug.Log("Initializing the user body");
@@ -236,6 +239,12 @@ public class UserBody {
 		//intialize left arm components
 		float leftArmUpperRadius = 0.5F * niteController.diameter[(int)NiteWrapper.BodySlice.LEFT_ARM_UPPER_2];
 		float leftArmLowerRadius = 0.5F * niteController.diameter[(int)NiteWrapper.BodySlice.LEFT_ARM_LOWER_2];
+		if (leftArmUpperRadius > 0.07F){
+			leftArmUpperRadius = 0.07F;
+		}
+		if (leftArmLowerRadius > 0.06F){
+			leftArmLowerRadius = 0.06F;
+		}
 		leftShoulder = new BodyJoint("Left_Shoulder", leftShoulderPos, leftShoulderRot, Vector3.right, (leftElbowPos - leftShoulderPos).magnitude, leftArmUpperRadius);
 		leftElbow = new BodyJoint("Left_Elbow", leftElbowPos, leftElbowRot, Vector3.right, (leftHandPos - leftElbowPos).magnitude, leftArmLowerRadius);
 		leftElbow.transform.parent = leftShoulder.transform;
@@ -252,6 +261,12 @@ public class UserBody {
 		//intialize right arm components
 		float rightArmUpperRadius = 0.5F * niteController.diameter[(int)NiteWrapper.BodySlice.RIGHT_ARM_UPPER_2];
 		float rightArmLowerRadius = 0.5F * niteController.diameter[(int)NiteWrapper.BodySlice.RIGHT_ARM_LOWER_2];
+		if (rightArmUpperRadius > 0.07F){
+			rightArmUpperRadius = 0.07F;
+		}
+		if (rightArmLowerRadius > 0.06F){
+			rightArmLowerRadius = 0.06F;
+		}		
 		rightShoulder = new BodyJoint("Right_Shoulder", rightShoulderPos, rightShoulderRot, Vector3.left, (rightElbowPos - rightShoulderPos).magnitude, rightArmUpperRadius);
 		rightElbow = new BodyJoint("Right_Elbow", rightElbowPos, rightElbowRot, Vector3.left, (rightHandPos - rightElbowPos).magnitude, rightArmLowerRadius);
 		rightElbow.transform.parent = rightShoulder.transform;
@@ -330,6 +345,7 @@ public class UserBody {
 //		skeletonJointMapping.Add(NiteWrapper.SkeletonJoint.LEFT_FOOT, new BodyJoint());
 		skeletonJointMapping.Add(NiteWrapper.SkeletonJoint.RIGHT_HIP, rightHip);
 		skeletonJointMapping.Add(NiteWrapper.SkeletonJoint.RIGHT_KNEE, rightKnee);
+		size = skeletonJointMapping.Count;
 //		skeletonJointMapping.Add(NiteWrapper.SkeletonJoint.RIGHT_FOOT, new BodyJoint());
 	}
 	
@@ -370,6 +386,7 @@ public class UserBody {
 			Vector3 position;
 			Quaternion rotation;
 			
+			int size = skeletonJointMapping.Count;
 			// Update the rotation for each joint
 			foreach (KeyValuePair<NiteWrapper.SkeletonJoint, BodyJoint> pair in skeletonJointMapping) {
 				if (niteController.GetJointOrientation(pair.Key, out rotation)) {
