@@ -27,6 +27,8 @@ The gaming industry has recently introduced the Kinect sensor which has interest
 
 In this project we use the Kinect sensor to create an augmented reality dressing room in which the user can try on virtual clothes. The pose of the user is tracked to allow the clothing to move with the user and the depth image is used to create an avatar of the user that approximates the user's body shape. Next, cloth simulation is applied to the virtual clothing to make it move and fold realistically based on the user's movements. The depth image from the sensor is used to compute the girth of the user's body at several places, which can be used to adapt the user avatar, adapt the clothing to the user's body shape, and recommend clothing sizes to the user. The RGB image is used as a background over which the clothing is projected and is displayed on the user avatar when it occludes parts of the clothing. The user is segmented from the background and the intensity of this part of the image is calculated to adapt the lighting of the virtual clothes. This makes the clothing appear as if it is in the same room as the user by reacting to bright and shaded parts of the environment.
 
+%possible applications
+
 \subsection{Project goals}
 \label{sec:project_goals}
 
@@ -37,7 +39,7 @@ The focus of this project is to create as realistic an augmented reality dressin
 \item be realistically rendered into the environment.
 \end{itemize}
 
-The rest of this paper is organized as follows. Section \ref{sec:related_work} discusses previous implementations of the virtual dressing-room concept and organizes them relative to the goals mentioned above. Section \ref{sec:implementation} presents our own implementation and the choices that we made and section \ref{sec:discussion} discusses some of the limitations of our approach. Our conclusions are presented in section \ref{sec:conclussion}.
+The rest of this paper is organized as follows. Section \ref{sec:related_work} discusses previous implementations of the virtual dressing-room concept and organizes them relative to the goals mentioned above. Section \ref{sec:implementation} presents our own implementation and the choices that we made and section \ref{sec:discussion} discusses some of the limitations of our approach. Our conclusions are presented in section \ref{sec:conclusion}.
 
 
 \section{Related work}
@@ -48,8 +50,14 @@ Evolution of the virtual dressing room idea: avatar with static clothes, AR with
 \section{Implementation}
 \label{sec:implementation}
 
-\subsection{User tracking}
-\label{sec:user_tracking}
+During this project we have created an augmented reality application in which the user can try on virtual clothes. We use the Kinect sensor for pose tracking, which is described in section \ref{sec:user_tracking}. For rendering the clothes in the user's environment we use the Unity game engine\footnote{\url{http://unity3d.com/}}. The virtual clothes and the way we render them is described in section \ref{sec:virtual_clothes}.
+
+
+
+%\subsection{User tracking}
+%\label{sec:user_tracking}
+
+
 
 \subsection{Virtual clothes}
 \label{sec:virtual_clothes}
@@ -100,5 +108,6 @@ Kleding zou meer realistisch zijn met hulp van 3d artists (textures, pasvorm)
 \section{Conclusion}
 \label{sec:conclusion}
 
-Evaluation of project goals in section 1
+This report has presented 
+
 \end{document}
