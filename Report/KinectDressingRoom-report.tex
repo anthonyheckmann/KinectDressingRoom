@@ -33,6 +33,29 @@ The focus of this project is to create as realistic an augmented reality dressin
 
 Evolution of the virtual dressing room idea: avatar with static clothes, AR with markers, full body with static clothes etc. Dimensions along which to organize: user tracking ability (none, markers, full skeleton tracking), clothing simulation (2d images, static clothes from multiple angles, movable clothes, full physics simulation),
 
+The idea of trying on virtual clothes is not new. With the growing use of digital cameras and more and more households possessing a webcam, it was possible to try on clothes by overlaying an image of the clothing over the camera image. Like every other technique the virtual dressing room evolved from very simple to more inventive solutions. The evolutionairy differences in these solutions can be largely reduced to two dimensions: the alignment of the user and the clothing and the authenticity of the clothing.
+
+\subsection{Alignment of user and clothing}
+
+In the first virtual dressing rooms there was no tracking of the user at all. In this very primitive form of augmented reality only an image of the clothing was overlayed over the camera image on a fixed position. In order to get the visual experience of wearing the clothing, the user had to align his body to the clothing image hisself. 
+
+% Insert screenshot
+
+A more appropriately manner of alignment would be to adjust the position, rotation and scale of the clothing to the user. The use of a marker made it possible to receive some 3D information out of the RGB image of a normal webcam. Position, rotation and scale were adjusted by moving the marker.
+
+% Insert screenshot
+
+The introduction of the Kinect gave relatively easy and cheap access to a depth camera. And with provided middelware such as the OpenNI framework the user's pose is trackable in a quite accurate way. FaceCake implemented a virtual dressing room using the Kinect and aligns the image of the clothing with the user's body using the pose tracking. This solution is currently the state of the art dressing room.
+The FaceCake virtual dressing room has some limitations though. In their application only upper body clothing with short sleeves is included and some accessories like bags. The legs are completely ignored and the arms are only used for the accessories.
+
+% Insert FaceCake screenshot
+
+\subsection{Authenticity of clothing}
+
+The goal of a virtual dressing room is to give a realistic visual experience of trying on clothes. Beside the alignment of the clothing, the authenticity is an important aspect in providing this experience. In the first versions the clothes were just static 2D images. It was only possible to see how the clothes looked from the front. In later dressing rooms such as the one created by FaceCake multiple 2D images of the clothing from different angles provided a more realistic experience, as it was possible to turn around and have a look from different angles. The clothing is still static and there is completely no interaction with the clothes besides changing location, rotation and scale.
+
+In our approach a great improvement over the state of the art virtual dressing rooms could be made on both dimensions. In the first place the Kinect with the pose tracking gives a full skeleton of the user. Although they might be harder to track, we think that a full dressing room experience should have the option to try on pants and longsleeves too. And as our approach makes an avatar of the user and puts that avatar clothes on, it is possible to use 3D models of the clothing. Also the interaction possibly could be more realistic; the 3D modeled clothing with physics folds like real clothing and the user's avatar can have full interaction with the clothing.
+
 \section{Implementation}
 
 \subsection{User tracking}
