@@ -43,7 +43,7 @@ Evolution of the virtual dressing room idea: avatar with static clothes, AR with
 clothing, lightness
 
 \subsection{Size estimation}
-On calibrating the user size and length is measured. This information is used to change the user model to fit to the user body. Another feature is to recommend the user to buy the right size of clothing. The length of each lib is taken by computing the distance between each joint from the skeleton.
+On calibrating the user size and length is measured. This information is used to change the user model to fit to the user body. Another feature is to recommend the right size of clothing. The length of each limb is taken by computing the distance between each joint from the skeleton.
 The size of the body is taken by estimating the girth of the chest on a number of points.
 \begin{figure}[htp]
 \centering
@@ -60,7 +60,7 @@ Although the first solution seems the best, it is not robust to a noisy sensor a
 The second option, although no ideal, proved more accurate than the first method.
 \\
 Because we can only see the front part of the user body, we have to estimate the full girth. This is done by multiplying the front part with a factor 2.1.
-Before giving the estimate size of the user, we take the average over 20 frames before giving the recommended size.
+Before giving the estimate size of the user, we take the average over 20 frames before drawing an conclusion.
 
 
 \subsection{Application overview}
