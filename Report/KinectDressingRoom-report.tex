@@ -54,15 +54,16 @@ During this project we have created an augmented reality application in which th
 
 
 
-%\subsection{User tracking}
-%\label{sec:user_tracking}
+\subsection{User tracking}
+\label{sec:user_tracking}
 
 
 
 \subsection{Virtual clothes}
 \label{sec:virtual_clothes}
-#clothing, lightness
-...
+
+
+
 To create of more realistic scene we measure the light conditions of the RGB image. This is done by converting the image to an HSV image and take an average of the intensity from the user.
 A point light in Unity will try to recreate the right light conditions.
 
@@ -107,6 +108,15 @@ Kleding zou meer realistisch zijn met hulp van 3d artists (textures, pasvorm)
 \section{Conclusion}
 \label{sec:conclusion}
 
-This report has presented 
+This report has presented an augmented reality application in which users can select and try on virtual clothes. These clothes are rendered on a screen over the image of the user and the lighting of the rendered clothing is adapted to match the light intensity of the user's environment. The main features of this application, corresponding to the goals in section \ref{sec:project_goals}, are as follows:
+\begin{itemize}
+\item The clothing is correctly aligned with the user's position and movement by skinning the clothing models to a skeleton rig which is controlled by the Kinect sensor's skeleton tracking.
+\item The clothing moves and folds realistically by applying Unity's clothing simulation to the clothing models.
+\item The clothing is realistically rendered by adapting the light intensity in the virtual scene to match the user's environment and by masking out the parts of the rendered clothing which would be occluded by the user.
+\end{itemize}
+
+The presented application is an improvement over similar existing augmented reality applications in that it offers both full user pose tracking using the Kinect, as well as 3-dimensional clothing models with cloth physics simulation such that it can be viewed from any angle, smoothly moves and rotates with the user, and reacts similar to real clothing.
+
+As a technology demo, the presented application shows how accurate augmented reality interaction with virtual objects can be realized using a depth camera with pose tracking. Considering that such sensors are now being released as consumer products we expect much future work in augmented reality will take advantage of these technologies.
 
 \end{document}
