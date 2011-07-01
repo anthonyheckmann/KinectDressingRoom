@@ -10,7 +10,7 @@ public class ClothingManager {
 	
 //	public string [] clothing = {"Dress", "Hippy Trousers", "T-Shirt"};
 //	public string [] clothing = {"Dress", "Pants", "Jacket"};
-	public string [] clothing = {"DebugBody", "Jacket"};
+	public string [] clothing = {"Jacket", "Pants", "Dress"};
 	
 	private NiteController niteController;
 	
@@ -18,20 +18,39 @@ public class ClothingManager {
 		niteController = nc;
 	}
 	
-	public void AddClothing(string clothingLabel) {
+	public void ToggleClothing(string clothingLabel) {
 		Vector3 location;
 		niteController.GetJointPosition(NiteWrapper.SkeletonJoint.TORSO_CENTER, out location);
-		Debug.Log("Adding " + clothingLabel);
+		Debug.Log("Toggling " + clothingLabel);
 		
-		GameObject clothing = Object.Instantiate(Resources.Load(clothingLabel), location, Quaternion.identity) as GameObject;
-		if (niteController.RegisterRig(clothing)) {
-			//Add clothing to list of worn clothing
-			addedClothing.Add(clothing);
+		GameObject clothing = FindActiveClothing(clothingLabel);
+		
+		if (clothing == null) {
+			clothing = Object.Instantiate(Resources.Load(clothingLabel), location, Quaternion.identity) as GameObject;
+			clothing.name = clothingLabel;
+			if (niteController.RegisterRig(clothing)) {
+				//Add clothing to list of worn clothing
+				addedClothing.Add(clothing);
+			} else {
+				Object.Destroy(clothing);
+				Debug.LogWarning("Clothing rig not valid: " + clothingLabel);
+			}
 		} else {
+			addedClothing.Remove(clothing);
 			Object.Destroy(clothing);
 		}
-		
 		//Debug.LogError("pause");
+	}
+	
+	public GameObject FindActiveClothing(string label) {
+		GameObject targetClothing = null;
+		foreach (GameObject clothing in addedClothing) {
+			if (clothing.name == label) {
+				targetClothing = clothing;
+				break;
+			}
+		}
+		return targetClothing;
 	}
 	
 	public void RemoveAllClothing() {

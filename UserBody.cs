@@ -245,8 +245,8 @@ public class UserBody {
 		if (leftArmLowerRadius > 0.06F){
 			leftArmLowerRadius = 0.06F;
 		}
-		leftShoulder = new BodyJoint("Left_Shoulder", leftShoulderPos, leftShoulderRot, Vector3.right, (leftElbowPos - leftShoulderPos).magnitude, leftArmUpperRadius);
-		leftElbow = new BodyJoint("Left_Elbow", leftElbowPos, leftElbowRot, Vector3.right, (leftHandPos - leftElbowPos).magnitude, leftArmLowerRadius);
+		leftShoulder = new BodyJoint("Left_Shoulder", leftShoulderPos, leftShoulderRot, Vector3.left, (leftElbowPos - leftShoulderPos).magnitude, leftArmUpperRadius);
+		leftElbow = new BodyJoint("Left_Elbow", leftElbowPos, leftElbowRot, Vector3.left, (leftHandPos - leftElbowPos).magnitude, leftArmLowerRadius);
 		leftElbow.transform.parent = leftShoulder.transform;
 		
 		//get positions of right arm parts
@@ -267,8 +267,8 @@ public class UserBody {
 		if (rightArmLowerRadius > 0.06F){
 			rightArmLowerRadius = 0.06F;
 		}		
-		rightShoulder = new BodyJoint("Right_Shoulder", rightShoulderPos, rightShoulderRot, Vector3.left, (rightElbowPos - rightShoulderPos).magnitude, rightArmUpperRadius);
-		rightElbow = new BodyJoint("Right_Elbow", rightElbowPos, rightElbowRot, Vector3.left, (rightHandPos - rightElbowPos).magnitude, rightArmLowerRadius);
+		rightShoulder = new BodyJoint("Right_Shoulder", rightShoulderPos, rightShoulderRot, Vector3.right, (rightElbowPos - rightShoulderPos).magnitude, rightArmUpperRadius);
+		rightElbow = new BodyJoint("Right_Elbow", rightElbowPos, rightElbowRot, Vector3.right, (rightHandPos - rightElbowPos).magnitude, rightArmLowerRadius);
 		rightElbow.transform.parent = rightShoulder.transform;
 
 		//get positions of left leg parts

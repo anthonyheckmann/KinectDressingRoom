@@ -206,6 +206,10 @@ public class NiteGUI {
 //	Thread image_Thread;
 //	short startAngle;
 	
+	//0 = looking, 1 = calibrating, 2 = calibrated
+	public int state;
+	public Texture2D stateIcon;
+	
 	public NiteGUI(NiteController niteController) {	
 		//depth_Thread = new Thread(new ThreadStart(this.updateusermap));
 		//image_Thread = new Thread(new ThreadStart(this.updatergbimage));
@@ -236,6 +240,9 @@ public class NiteGUI {
 		usersImageRect = new Rect(Screen.width - usersImageTex.width / 2, Screen.height - usersImageTex.height / 2, usersImageTex.width / 2, usersImageTex.height / 2);
 		
 		bg = GameObject.Find("Background Image").GetComponent<GUITexture>();	
+		bg.pixelInset = new Rect(-Screen.width / 2, -Screen.height / 2, Screen.width, Screen.height);
+		
+		stateIcon = Resources.Load("lookingUser") as Texture2D;
 	}
 	
 //	private void updateusermap() {	
@@ -402,6 +409,10 @@ public class NiteGUI {
 	int p_intensity = 0;
 	double total_intensity = 0;
 	
+	public void DrawStateIndicator() {
+		GUI.DrawTexture(new Rect(Screen.width - 150,0, 150, 100), stateIcon);
+	}
+	
 	public void UpdateRgbImage() {
 //		if (image_Thread.ThreadState == ThreadState.Suspended) {
 //			image_Thread.Resume();
@@ -527,11 +538,13 @@ public class NiteController {
 	void OnNewUser(uint UserId)
     {
         Debug.Log(String.Format("[{0}] New user", UserId));
+		gui.stateIcon = Resources.Load("looking") as Texture2D;
     }   
 
     void OnCalibrationStarted(uint UserId)
     {
 		Debug.Log(String.Format("[{0}] Calibration started", UserId));
+		gui.stateIcon = Resources.Load("calibrating") as Texture2D;
     }
 
     void OnCalibrationFailed(uint UserId)
@@ -604,6 +617,8 @@ public class NiteController {
 		Debug.Log(clothSize);		
 		
 		this.onNewUser();
+		
+		gui.stateIcon = Resources.Load("calibrated") as Texture2D;
     }
 
     void OnUserLost(uint UserId)
@@ -613,6 +628,8 @@ public class NiteController {
 		
 		Debug.Log("Starting to look for users");
 		NiteWrapper.StartLookingForUsers(NewUser, CalibrationStarted, CalibrationFailed, CalibrationSuccess, UserLost);
+		
+		gui.stateIcon = Resources.Load("lookingUser") as Texture2D;
     }
 	
 	public bool GetJointOrientation(NiteWrapper.SkeletonJoint joint, out Quaternion rotation) {
@@ -754,6 +771,7 @@ public class NiteController {
 			//gui.DrawUserMap();
 		}
 		//gui.DrawCameraImage();
+		gui.DrawStateIndicator();
 	}
 			
 	public int getCurrentUser() {

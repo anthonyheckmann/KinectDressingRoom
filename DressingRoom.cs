@@ -75,8 +75,8 @@ public class DressingRoomGUI {
 		//userBody.pauseUpdate = true;
 		//userBody.RotateToInitialPosition();
 		foreach (ClothingButton button in currentSelections){
-			clothingManager.RemoveAllClothing();
-			clothingManager.AddClothing(button.label);
+			//clothingManager.RemoveAllClothing();
+			clothingManager.ToggleClothing(button.label);
 			button.currentSelectionTime = 0.0F;
 		}
 		currentSelections.Clear();
