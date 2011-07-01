@@ -612,7 +612,7 @@ public class NiteController {
 		else if (ChestGirth < 141)
 			clothSize = "3XL : extra extra extra large (" + ChestGirth + ")";
 		else 
-			clothSize = "You are yoo fat! (" + ChestGirth + ")";
+			clothSize = "too large! (" + ChestGirth + ")";
 		
 		Debug.Log(clothSize);		
 		
