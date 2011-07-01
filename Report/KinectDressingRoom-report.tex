@@ -4,6 +4,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{url}
+\usepackage{graphicx}
 
 \title{Kinect Virtual Dressing Room}
 
@@ -42,6 +43,25 @@ Evolution of the virtual dressing room idea: avatar with static clothes, AR with
 clothing, lightness
 
 \subsection{Size estimation}
+On calibrating the user size and length is measured. This information is used to change the user model to fit to the user body. Another feature is to recommend the user to buy the right size of clothing. The length of each lib is taken by computing the distance between each joint from the skeleton.
+The size of the body is taken by estimating the girth of the chest on a number of points.
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.3]{size_estimation.png} 
+\caption{size estimation of an user, red lines represent the places where the girth is measured. The numbers are the estimated girth of those lines.}
+\label{fig:size_estimation}
+\end{figure}
+The girth can be measured by two methods:
+\begin{itemize}
+\item Computing the distance between each point on the line
+\item Taking 3 points (outer left, centre and outer right) and compute the distance between those
+\end{itemize}
+Although the first solution seems the best, it is not robust to a noisy sensor and cloth folding. Even the slightest fold will drastically increase the users estimated girth.
+The second option, although no ideal, proved more accurate than the first method.
+\\
+Because we can only see the front part of the user body, we have to estimate the full girth. This is done by multiplying the front part with a factor 2.1.
+Before giving the estimate size of the user, we take the average over 20 frames before giving the recommended size.
+
 
 \subsection{Application overview}
 
