@@ -27,6 +27,8 @@ The gaming industry has recently introduced the Kinect sensor which has interest
 
 In this project we use the Kinect sensor to create an augmented reality dressing room in which the user can try on virtual clothes. The pose of the user is tracked to allow the clothing to move with the user and the depth image is used to create an avatar of the user that approximates the user's body shape. Next, cloth simulation is applied to the virtual clothing to make it move and fold realistically based on the user's movements. The depth image from the sensor is used to compute the girth of the user's body at several places, which can be used to adapt the user avatar, adapt the clothing to the user's body shape, and recommend clothing sizes to the user. The RGB image is used as a background over which the clothing is projected and is displayed on the user avatar when it occludes parts of the clothing. The user is segmented from the background and the intensity of this part of the image is calculated to adapt the lighting of the virtual clothes. This makes the clothing appear as if it is in the same room as the user by reacting to bright and shaded parts of the environment.
 
+%possible applications
+
 \subsection{Project goals}
 \label{sec:project_goals}
 
@@ -37,7 +39,7 @@ The focus of this project is to create as realistic an augmented reality dressin
 \item be realistically rendered into the environment.
 \end{itemize}
 
-The rest of this paper is organized as follows. Section \ref{sec:related_work} discusses previous implementations of the virtual dressing-room concept and organizes them relative to the goals mentioned above. Section \ref{sec:implementation} presents our own implementation and the choices that we made and section \ref{sec:discussion} discusses some of the limitations of our approach. Our conclusions are presented in section \ref{sec:conclussion}.
+The rest of this paper is organized as follows. Section \ref{sec:related_work} discusses previous implementations of the virtual dressing-room concept and organizes them relative to the goals mentioned above. Section \ref{sec:implementation} presents our own implementation and the choices that we made and section \ref{sec:discussion} discusses some of the limitations of our approach. Our conclusions are presented in section \ref{sec:conclusion}.
 
 
 \section{Related work}
@@ -45,16 +47,46 @@ The rest of this paper is organized as follows. Section \ref{sec:related_work} d
 
 Evolution of the virtual dressing room idea: avatar with static clothes, AR with markers, full body with static clothes etc. Dimensions along which to organize: user tracking ability (none, markers, full skeleton tracking), clothing simulation (2d images, static clothes from multiple angles, movable clothes, full physics simulation),
 
+The idea of trying on virtual clothes is not new. With the growing use of digital cameras and more and more households possessing a webcam, it was possible to try on clothes by overlaying an image of the clothing over the camera image. Like every other technique the virtual dressing room evolved from very simple to more inventive solutions. The evolutionairy differences in these solutions can be largely reduced to two dimensions: the alignment of the user and the clothing and the authenticity of the clothing.
+
+\subsection{Alignment of user and clothing}
+
+In the first virtual dressing rooms there was no tracking of the user at all. In this very primitive form of augmented reality only an image of the clothing was overlayed over the camera image on a fixed position. In order to get the visual experience of wearing the clothing, the user had to align his body to the clothing image hisself. 
+
+% Insert screenshot
+
+A more appropriately manner of alignment would be to adjust the position, rotation and scale of the clothing to the user. The use of a marker made it possible to receive some 3D information out of the RGB image of a normal webcam. Position, rotation and scale were adjusted by moving the marker.
+
+% Insert screenshot
+
+The introduction of the Kinect gave relatively easy and cheap access to a depth camera. And with provided middelware such as the OpenNI framework the user's pose is trackable in a quite accurate way. FaceCake implemented a virtual dressing room using the Kinect and aligns the image of the clothing with the user's body using the pose tracking. This solution is currently the state of the art dressing room.
+The FaceCake virtual dressing room has some limitations though. In their application only upper body clothing with short sleeves is included and some accessories like bags. The legs are completely ignored and the arms are only used for the accessories.
+
+% Insert FaceCake screenshot
+
+\subsection{Authenticity of clothing}
+
+The goal of a virtual dressing room is to give a realistic visual experience of trying on clothes. Beside the alignment of the clothing, the authenticity is an important aspect in providing this experience. In the first versions the clothes were just static 2D images. It was only possible to see how the clothes looked from the front. In later dressing rooms such as the one created by FaceCake multiple 2D images of the clothing from different angles provided a more realistic experience, as it was possible to turn around and have a look from different angles. The clothing is still static and there is completely no interaction with the clothes besides changing location, rotation and scale.
+
+In our approach a great improvement over the state of the art virtual dressing rooms could be made on both dimensions. In the first place the Kinect with the pose tracking gives a full skeleton of the user. Although they might be harder to track, we think that a full dressing room experience should have the option to try on pants and longsleeves too. And as our approach makes an avatar of the user and puts that avatar clothes on, it is possible to use 3D models of the clothing. Also the interaction possibly could be more realistic; the 3D modeled clothing with physics folds like real clothing and the user's avatar can have full interaction with the clothing.
+
 \section{Implementation}
 \label{sec:implementation}
+
+During this project we have created an augmented reality application in which the user can try on virtual clothes. We use the Kinect sensor for pose tracking, which is described in section \ref{sec:user_tracking}. For rendering the clothes in the user's environment we use the Unity game engine\footnote{\url{http://unity3d.com/}}. The virtual clothes and the way we render them is described in section \ref{sec:virtual_clothes}.
+
+
 
 \subsection{User tracking}
 \label{sec:user_tracking}
 
+
+
 \subsection{Virtual clothes}
 \label{sec:virtual_clothes}
-#clothing, lightness
-...
+
+
+
 To create of more realistic scene we measure the light conditions of the RGB image. This is done by converting the image to an HSV image and take an average of the intensity from the user.
 A point light in Unity will try to recreate the right light conditions.
 
@@ -99,5 +131,15 @@ Kleding zou meer realistisch zijn met hulp van 3d artists (textures, pasvorm)
 \section{Conclusion}
 \label{sec:conclusion}
 
-Evaluation of project goals in section 1
+This report has presented an augmented reality application in which users can select and try on virtual clothes. These clothes are rendered on a screen over the image of the user and the lighting of the rendered clothing is adapted to match the light intensity of the user's environment. The main features of this application, corresponding to the goals in section \ref{sec:project_goals}, are as follows:
+\begin{itemize}
+\item The clothing is correctly aligned with the user's position and movement by skinning the clothing models to a skeleton rig which is controlled by the Kinect sensor's skeleton tracking.
+\item The clothing moves and folds realistically by applying Unity's clothing simulation to the clothing models.
+\item The clothing is realistically rendered by adapting the light intensity in the virtual scene to match the user's environment and by masking out the parts of the rendered clothing which would be occluded by the user.
+\end{itemize}
+
+The presented application is an improvement over similar existing augmented reality applications in that it offers both full user pose tracking using the Kinect, as well as 3-dimensional clothing models with cloth physics simulation such that it can be viewed from any angle, smoothly moves and rotates with the user, and reacts similar to real clothing.
+
+As a technology demo, the presented application shows how accurate augmented reality interaction with virtual objects can be realized using a depth camera with pose tracking. Considering that such sensors are now being released as consumer products we expect much future work in augmented reality will take advantage of these technologies.
+
 \end{document}
