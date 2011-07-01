@@ -61,15 +61,15 @@ During this project we have created an augmented reality application in which th
 
 \subsection{Virtual clothes}
 \label{sec:virtual_clothes}
+#clothing, lightness
+...
+To create of more realistic scene we measure the light conditions of the RGB image. This is done by converting the image to an HSV image and take an average of the intensity from the user.
+A point light in Unity will try to recreate the right light conditions.
 
-clothing, lightness
 
 \subsection{Size estimation}
 \label{sec:size_estimation}
-
-
 On calibrating the user size and length is measured. This information is used to change the user model to fit to the user body. Another feature is to recommend the right size of clothing. The length of each limb is taken by computing the distance between each joint from the skeleton.
-
 The size of the body is taken by estimating the girth of the chest on a number of points.
 \begin{figure}[htp]
 \centering
@@ -87,7 +87,6 @@ The second option, although no ideal, proved more accurate than the first method
 \\
 Because we can only see the front part of the user body, we have to estimate the full girth. This is done by multiplying the front part with a factor 2.1.
 Before giving the estimate size of the user, we take the average over 20 frames before drawing an conclusion.
-
 
 \subsection{Application overview}
 \label{sec:application_overview}
