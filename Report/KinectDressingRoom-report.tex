@@ -68,15 +68,21 @@ A more appropriately manner of alignment would be to adjust the position, rotati
 	}
 \end{figure}
 
-The introduction of the Kinect gave relatively easy and cheap access to a depth camera. And with provided middelware such as the OpenNI framework the user's pose is trackable in a quite accurate way. FaceCake implemented a virtual dressing room using the Kinect and aligns the image of the clothing with the user's body using the pose tracking. This solution is currently the state of the art dressing room.
+The introduction of the Kinect gave relatively easy and cheap access to a depth camera. And with provided middelware such as the OpenNI framework the user's pose is trackable in a quite accurate way. FaceCake\footnote{\url{http://www.facecake.com/}} \footnote{Demo: \url{http://www.youtube.com/watch?v=A0DB26zYq4A}} implemented a virtual dressing room using the Kinect and aligns the image of the clothing with the user's body using the pose tracking. This solution is currently the state of the art dressing room.
 
-% Insert FaceCake screenshot
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.1]{facecake.png} 
+\caption{Demonstration of the FaceCake virtual dressing room}
+\label{fig:facecake}
+\end{figure}
 
 \subsection{Realism of clothing}
 
 The goal of a virtual dressing room is to give a realistic visual experience of trying on clothes. Beside the alignment of the clothing, the realism is an important aspect in providing this experience. In the first versions the clothes were just static 2D images. It was only possible to see how the clothes looked from the front. In later dressing rooms such as the one created by FaceCake multiple 2D images of the clothing from different angles provided a more realistic experience, as it was possible to turn around and have a look from different sides. The clothing is still static and there is completely no interaction with the clothes besides changing location, rotation and scale.
 
 In our approach a great improvement over the state of the art virtual dressing rooms could be made on both dimensions. In the first place the Kinect with the pose tracking gives a full skeleton of the user. Although they might be harder to track, we think that a full dressing room experience should have the option to try on pants and longsleeves too. And as our approach makes an avatar of the user and puts that avatar clothes on, it is possible to use 3D models of the clothing. Also the interaction possibly could be more realistic; the 3D modeled clothing with physics folds like real clothing and the user's avatar can have full interaction with the clothing.
+In the FaceCake dressing room the clothing is always in front of the user. A more realistic experience should show the arm before the clothing, when the user's arm is before his body.
 
 \section{Implementation}
 \label{sec:implementation}
@@ -86,7 +92,14 @@ During this project we have created an augmented reality application in which th
 \subsection{User tracking}
 \label{sec:user_tracking}
 
-The Kinect sensor is equipped with a RGB and depth camera. The user tracking included in the OpenNI framework \footnote{\url{http://www.openni.org/}} uses the depth camera information to find one or more users. When the user stands in the calibration pose (see figure \ref{fig:calibration_pose}) the user tracker finds the user's simplefied skeleton as is given in \ref{fig:skeleton}. The 3D positions of the joints are returned along with their rotation. With this information the skeleton for the 3D avatar in Unity is known. But for the alignment of the clothing with the user's body the skeleton alone is not sufficient. The exact sizes of each bodypart should be approximated.
+The Kinect sensor is equipped with a RGB and depth camera. The user tracking included in the OpenNI framework \footnote{\url{http://www.openni.org/}} uses the depth camera information to find one or more users. When the user stands in the calibration pose the user tracker finds the user's simplified skeleton as is given in \ref{fig:skeleton}. The 3D positions of the joints are returned along with their rotation. With this information the skeleton for the 3D avatar in Unity is known. But for the alignment of the clothing with the user's body the skeleton alone is not sufficient. The exact sizes of each bodypart should be approximated.
+
+ \begin{figure}[htp]
+\centering
+\includegraphics[scale=0.2]{usertracker.png} 
+\caption{The skeleton as tracked by the OpenNI user tracker}
+\label{fig:skeleton}
+\end{figure}
 
 \subsection{Size estimation}
 \label{sec:size_estimation}
@@ -113,19 +126,30 @@ Before giving the estimate size of the user, we take the average over 20 frames 
 \subsection{Virtual clothes}
 \label{sec:virtual_clothes}
 With the 3D avatar of the user the next step in our implementation is to dress this avatar. 3D Meshes of clothing are made in Blender and imported in Unity. Unity provides 2 different clothing components that can be added to a mesh: interactive cloth and skinned cloth. Both components have features such as stretch, damping and thickness to give a real clothing experience.
-	 	
--\subsubsection{Interactive cloth}
+
+\subsubsection{Interactive cloth}
 \label{sec:interactive_cloth}	
 Since the release of Unity 3.0 the interactive cloth is included as alternative for skinned cloth. This component turns every possible mesh into a cloth and interacts with colliders. By making the bodyparts of the user's avatar colliders, an interactive clothing should be interacting just like in reality. Interactive cloth seemed therefore a very good and realistic option for our virtual dressing room. The full interaction with environment and user body has a downside though: it is computationally complex. Besides that we experienced an incorrectly big response of the interactive cloth to the user body, resulting in catapulted clothing. These cons could be caused by the short time interactive cloth exist. If the last con is corrected, we think interactive cloth is more realistic than skinned cloth. For now however it is not useful in our implementation.
 	 	
--\subsubsection{Skinned cloth}
+\subsubsection{Skinned cloth}
 \label{sec:skinned_cloth}	 	
 Skinned cloth operates very different. This component works in combination with a skinned mesh. A skinned mesh is used for characters in Unity. The character is given a bone structure and the movement of each bone affects a part of the vertices in the skinned mesh. The skinned cloth component applies clothing simulation to the vertices of the skinned mesh. Per vertex a coefficient defines how free the simulated cloth can move. The fact that this cloth component is based on a bone structure makes it very suitable for our virtual dressing room, as the user tracker supplies a skeleton of the user. Drawback is the absence of further interaction with the user and environment. The skinned cloth does not interact with colliders. This makes skinned cloth on the other hand computational simple in comparison with interactive cloth. Skinned cloth is selected for clothing simulation eventually, as it was more reliable at the moment.
 
-\subsection{Light contions}
+\subsection{Light conditions}
 \label{sec:light_conditions}
 To create of more realistic scene we measure the light conditions of the RGB image. This is done by converting the image to an HSV image and take an average of the intensity from the user.
 A point light in Unity will try to recreate the right light conditions.
+
+\subsection{Body part masking}
+\label{sec:bodypart_masking}
+In section \ref{sec:related_work} is mentioned that the state of the art virtual dressing room by FaceCake does not provide a solution for body parts that should appear before the clothing. In our implementation the 3D information for the avatar and the clothing is available to make this more realistic. Unity gives a solution by depth masking shaders. For the body parts a material with masking shaders is selected and the clothing gets a material that is masked when behind the body parts. And as the clothing is displayed before the RGB image, the body part is shown as if it is before the clothing (Figure \ref{fig:shader}).
+
+ \begin{figure}[htp]
+\centering
+\includegraphics[scale=0.3]{show_shader_morris.png} 
+\caption{The body part maskes the clothing and shows the background image}
+\label{fig:shader}
+\end{figure}
 
 
 \subsection{Application overview}
