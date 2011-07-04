@@ -85,17 +85,9 @@ During this project we have created an augmented reality application in which th
 
 \subsection{Virtual clothes}
 \label{sec:virtual_clothes}
-With the 3D avatar of the user the next step in our implementation is to dress this avatar. 3D Meshes of clothing are made in Blender and imported in Unity. Unity provides 2 different clothing components that can be added to a mesh: interactive cloth and skinned cloth. Both components have features such as stretch, damping and thickness to give a real clothing experience.
 
-\subsubsection{Interactive cloth}
 
-Since the release of Unity 3.0 the interactive cloth is included as alternative for skinned cloth. This component turns every possible mesh into a cloth and interacts with colliders. By making the user's avatar joints colliders, an interactive clothing should be interacting just in reality. Interactive cloth seemed therefore a very good and realistic option for our virtual dressing. The full interaction with environment and user body has a downside though: it is computationally complex. Besides that we experienced an incorrectly big response of the interactive cloth to user body, resulting in catapulted clothing. These cons could be caused by the short time interactive cloth exist. If the last con is corrected, we think interactive cloth is more realistic than skinned cloth. For now however it is not useful in our implementation.
 
-\subsubsection{Skinned cloth}
-
-Skinned cloth operates very different. This component works in combination with a skinned mesh. A skinned mesh is used for characters in Unity. The character is given a bone structure and the movement of each bone affects a part of the vertices in the skinned mesh. The skinned cloth component applies clothing simulation to the vertices of the skinned mesh. Per vertex a coefficient defines how free the simulated cloth can move. The fact that this cloth component is based on a bone structure makes it very suitable for our virtual dressing room, as the user tracker supplies a skeleton of the user. Drawback is the absence of further interaction with the user and environment. The skinned cloth does not interact with colliders. This makes skinned cloth on the other hand computational simple in comparison with interactive cloth. Skinned cloth is selected for clothing simulation eventually, as it was more reliable at the moment.
-
-%%%%%%%%% 
 To create of more realistic scene we measure the light conditions of the RGB image. This is done by converting the image to an HSV image and take an average of the intensity from the user.
 A point light in Unity will try to recreate the right light conditions.
 
@@ -123,43 +115,53 @@ Before giving the estimate size of the user, we take the average over 20 frames 
 
 \subsection{Application overview}
 \label{sec:application_overview}
-The gui of the virtual dressing room consists of an RGB image, 3 buttons and a calibration progress marker. To use the application the user first has to calibrate with the system. This is done by taking the calibration pose see <figure:lable:calibrarionPose>. The marker on the top right of the screen will display the progress. 
-
-\begin{figure}[ht]
+The GUI of the virtual dressing room consists of an RGB image, 3 buttons and a calibration progress marker. To use the application the user first has to calibrate with the system. This is done by taking the calibration pose (Figure ~\ref{fig:calibrationPose}), it will take a few secondes before the system is calibrated. The marker on the top right of the screen will display the calibration progress (Figure ~\ref{fig:progressmarker}).
+\begin{figure}[h!]
 \centering
 	\subfigure[looking for user] {
 	\includegraphics[scale=0.5]{lookingforuser.png} 
-	\label{fig:lookingforuser}
 	}
-	
 	\subfigure[looking for calibration pose] {
 	\includegraphics[scale=0.5]{looking.png} 
-	\label{fig:lookingforuser}
 	}
-	
 	\subfigure[calibrating] {
 	\includegraphics[scale=0.5]{calibrating.png} 
-	\label{fig:lookingforuser}
 	}
-	
 	\subfigure[calibrated] {
 	\includegraphics[scale=0.5]{calibrated.png} 
-	\label{fig:lookingforuser}
 	}
+	\caption{Different progress marker states} 
+	\label{fig:progressmarker}
 \end{figure}
 
-When the calibration step is completed the user can change there clothing by activating or deactivating the available buttons on the screen. This can be done by hovering either the left or right hand over the button.
-
-\begin{figure}[htp]
+\begin{figure}
 \centering
-\includegraphics[scale=0.3]{GUI_jacket_morris.png} 
+\includegraphics[scale=0.5]{calibrationPose.png} 
+\caption{calibration pose for kinect}
+\label{fig:calibrationPose}
+\end{figure}
+
+When the calibration step is completed the user can change their clothing by activating or deactivating the available buttons on the screen. This can be done by hovering either the left or right hand over the button.
+Items currently available in this project:
+\begin{itemize}
+\item Jacket.
+\item Pants 
+\item Dress.
+\end{itemize}
+Here a few examples of users wearing the virtual clothes.
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.4]{GUI_jacket_morris.png} 
 \caption{An user wearing a blue jacket.}
 \label{fig:jacket_morris}
 \end{figure}
 
-<image dress>
-Figure x. An user wearing a dress <maybe ask girl…>
-
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.4]{dress_fedde.png} 
+\caption{An user wearing a dress.}
+\label{fig:dress_fedde}
+\end{figure}
 
 \section{Discussion}
 \label{sec:discussion}
