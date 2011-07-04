@@ -211,7 +211,9 @@ For any augmented reality application it is important to have realistic interact
 
 Our approach to display the RGB image captured by the sensor as a background image and masking out parts of the clothing by checking for occlusion by the user avatar also has some limitations. First, because the mesh of the user avatar is constructed from primitive shapes it does not correspond exactly to the user's shape and thus the masked image includes parts of the body which should not be displayed and clips off parts which should be. Secondly, since other objects from the user's environment have no mesh representation they are not used in this masking process and can not occlude the clothing. As a result the clothing might be projected over an object which occludes the user and should thus occlude the clothing. The Kinect sensor outputs the color and depth of each pixel, thus a simple solution would be to display the image not as a background image but by using a pixel shader which writes each pixel's color value into the depth buffer and should thus occlude parts of the virtual objects which are behind it in the depth buffer.
 
-Evaluatie van size estimation moet grotere dataset hebben
+Although the size estimation does work well under a simple algorithm, it will be much harder to estimate the true girth. not knowing what clothing the user is wearing, and how much distance there is between the clothes and the user body (sloppy vs. tight clothing). And because the kinect can only see the front side of the body, it has to estimate the back. 
+Accuracy might increase by using a large dataset of trainings data and a linear regressing classifier to estimate the girth.
+
 
 Kleding zou meer realistisch zijn met hulp van 3d artists (textures, pasvorm)
 
@@ -228,8 +230,5 @@ This report has presented an augmented reality application in which users can se
 The presented application is an improvement over similar existing augmented reality applications in that it offers both full user pose tracking using the Kinect, as well as 3-dimensional clothing models with cloth physics simulation such that it can be viewed from any angle, smoothly moves and rotates with the user, and reacts similar to real clothing.
 
 As a technology demo, the presented application shows how accurate augmented reality interaction with virtual objects can be realized using a depth camera with pose tracking. Considering that such sensors are now being released as consumer products we expect much future work in augmented reality will take advantage of these technologies.
-
-Although the size estimation does work well under a simple algorithm, it will be much harder to estimate the true girth. not knowing what clothing the user is wearing, and how much distance there is between the clothes and the user body (sloppy vs. tight clothing). And because the kinect can only see the front side of the body, it has to estimate the back. 
-Accuracy might increase by using a large dataset of trainings data and a linear regressing classifier to estimate the girth.
 
 \end{document}
