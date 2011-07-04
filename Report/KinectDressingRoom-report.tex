@@ -33,7 +33,7 @@ In this project we use the Kinect sensor to create an augmented reality dressing
 \subsection{Project goals}
 \label{sec:project_goals}
 
-The focus of this project is to create as realistic an augmented reality dressing room as possible. To accomplish this requires real-time, accurate, tracking of the user pose as well as realistic virtual clothing. For the pose tracking the Kinect sensor is used which gives more complete and accurate tracking of the user pose than the marker based or image-feature based tracking which is traditionally used in augmented reality applications. For the clothing we created a set of 3d models that can be rendered into the scene. The goal of this project is for the user to be able to realistically interact with these virtual pieces of clothing. To achieve this the clothing needs to:
+The focus of this project is to create as realistic an augmented reality dressing room as possible. To accomplish this requires real-time tracking of the user pose as well as realistic virtual clothing. For the pose tracking the Kinect sensor is used which gives more complete and accurate tracking of the user pose than the marker based or image-feature based tracking which is traditionally used in augmented reality applications. For the clothing we created a set of 3d models that can be rendered into the scene. The goal of this project is for the user to be able to realistically interact with these virtual pieces of clothing. To achieve this the clothing needs to:
 \begin{itemize}
 \item be aligned correctly with the user position and pose.
 \item move and fold realistically. 
@@ -45,8 +45,6 @@ The rest of this paper is organized as follows. Section \ref{sec:related_work} d
 
 \section{Related work}
 \label{sec:related_work}
-
-Evolution of the virtual dressing room idea: avatar with static clothes, AR with markers, full body with static clothes etc. Dimensions along which to organize: user tracking ability (none, markers, full skeleton tracking), clothing simulation (2d images, static clothes from multiple angles, movable clothes, full physics simulation),
 
 The idea of trying on virtual clothes is not new. With the growing use of digital cameras and more and more households possessing a webcam, it was possible to try on clothes by overlaying an image of the clothing over the camera image. Like every other technique the virtual dressing room evolved from very simple to more inventive solutions. The evolutionairy differences in these solutions can be largely reduced to two dimensions: the alignment of the user and the clothing and the authenticity of the clothing.
 
@@ -61,7 +59,6 @@ A more appropriately manner of alignment would be to adjust the position, rotati
 % Insert screenshot
 
 The introduction of the Kinect gave relatively easy and cheap access to a depth camera. And with provided middelware such as the OpenNI framework the user's pose is trackable in a quite accurate way. FaceCake implemented a virtual dressing room using the Kinect and aligns the image of the clothing with the user's body using the pose tracking. This solution is currently the state of the art dressing room.
-The FaceCake virtual dressing room has some limitations though. In their application only upper body clothing with short sleeves is included and some accessories like bags. The legs are completely ignored and the arms are only used for the accessories.
 
 % Insert FaceCake screenshot
 
@@ -81,12 +78,13 @@ During this project we have created an augmented reality application in which th
 \subsection{User tracking}
 \label{sec:user_tracking}
 
+The Kinect sensor is equipped with a RGB and depth camera. The user tracking included in the OpenNI framework \footnote{\url{http://www.openni.org/}} uses the depth camera information to find one or more users. When the user stands in the calibration pose (see figure \ref{fig:calibration_pose}) the user tracker finds the user's simplefied skeleton as is given in \ref{fig:skeleton}. The 3D positions of the joints are returned along with their rotation. With this information the skeleton for the 3D avatar in Unity is known. But for the alignment of the clothing with the user's body the skeleton alone is not sufficient. The exact sizes of each bodypart should be approximated. Section \ref{sec:size_estimation} describes how these sizes are found.
 
 
 \subsection{Virtual clothes}
 \label{sec:virtual_clothes}
 
-
+Since the release of Unity 3.0 the interactive cloth is included as alternative for skinned cloth. This component turns every possible mesh into a cloth and interacts with colliders. By making the bodyparts of the user's avatar colliders, an interactive clothing should be interacting just like in reality. Interactive cloth seemed therefore a very good and realistic option for our virtual dressing room. The full interaction with environment and user body has a downside though: it is computationally complex. Besides that we experienced an incorrectly big response of the interactive cloth to the user body, resulting in catapulted clothing. These cons could be caused by the short time interactive cloth exist. If the last con is corrected, we think interactive cloth is more realistic than skinned cloth. For now however it is not useful in our implementation.
 
 To create of more realistic scene we measure the light conditions of the RGB image. This is done by converting the image to an HSV image and take an average of the intensity from the user.
 A point light in Unity will try to recreate the right light conditions.
@@ -166,9 +164,11 @@ Here a few examples of users wearing the virtual clothes.
 \section{Discussion}
 \label{sec:discussion}
 
-Interaction with cloth using collision detection, mislukte interactive cloth approach
+The implementation discussed in section \ref{sec:implementation} has several limitations which we will discuss in this section, along with suggestions for removing these limitations. 
 
-Pixel shaders vs user body (zou als groot voordeel hebben dat je ook andere objecten (bv. tafel waar je achter staat) de kleding zouden occlude-en
+For any augmented reality application it is important to have realistic interaction between the user and virtual objects, in this case the virtual clothing. Interaction with the clothing comes in two forms, firstly having the cloth move with the user as if he/she is wearing them, and secondly direct physical interaction between the clothing and the user body. These two forms of interaction correspond to the two types of clothing simulation described in section \ref{sec:virtual_clothes}: skinning the cloth to the user skeleton allows for realistic movement, while the interactive cloth includes a physics simulation that allows for correct interaction between the cloth and physical objects in the scene, such as the user body. A combination between the two approaches could combine the best attributes of both. Such an approach would be to add collision detection to the vertices in the clothing mesh, but restricting the resulting transformation to the volume defined by the skinned cloth coefficients.
+
+Our approach to display the RGB image captured by the sensor as a background image and masking out parts of the clothing by checking for occlusion by the user avatar also has some limitations. First, because the mesh of the user avatar is constructed from primitive shapes it does not correspond exactly to the user's shape and thus the masked image includes parts of the body which should not be displayed and clips off parts which should be. Secondly, since other objects from the user's environment have no mesh representation they are not used in this masking process and can not occlude the clothing. As a result the clothing might be projected over an object which occludes the user and should thus occlude the clothing. The Kinect sensor outputs the color and depth of each pixel, thus a simple solution would be to display the image not as a background image but by using a pixel shader which writes each pixel's color value into the depth buffer and should thus occlude parts of the virtual objects which are behind it in the depth buffer.
 
 Evaluatie van size estimation moet grotere dataset hebben
 
