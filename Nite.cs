@@ -442,6 +442,7 @@ public class NiteGUI {
 		
 		Light light = GameObject.Find("Point light").GetComponent<Light>();	
 		light.intensity = 1*(float)(total_intensity/10.0);
+		niteController.strIntensity = "user = " + niteController.getCurrentUser() +  ", intensity = " + I;
 	}
 	
 	public void DrawUserMap() {
@@ -493,6 +494,7 @@ public class NiteController {
 	
 	Thread scan_Thread;
 	String clothSize = "";
+	public String strIntensity = "";
 	
 	//Body rigs that are controlled by this controller, have to be registered
 	private List<Rig> registeredRigs;
@@ -764,9 +766,9 @@ public class NiteController {
 	}
 	
 	public void UpdateGUI () {
-//		if (clothSize != "") {
-//			GUI.Box(new Rect(100,100,300,200), clothSize);
-//		}
+		if (clothSize != "") {
+			GUI.Box(new Rect(100,100,300,200), strIntensity);
+		}
 		if (!calibratedUser) {
 			//gui.DrawUserMap();
 		}
