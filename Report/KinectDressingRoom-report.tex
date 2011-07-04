@@ -83,22 +83,10 @@ In our approach a great improvement over the state of the art virtual dressing r
 
 During this project we have created an augmented reality application in which the user can try on virtual clothes. We use the Kinect sensor for pose tracking, which is described in section \ref{sec:user_tracking}. For rendering the clothes in the user's environment we use the Unity game engine\footnote{\url{http://unity3d.com/}}. The virtual clothes and the way we render them is described in section \ref{sec:virtual_clothes}.
 
-
-
 \subsection{User tracking}
 \label{sec:user_tracking}
 
-The Kinect sensor is equipped with a RGB and depth camera. The user tracking included in the OpenNI framework \footnote{\url{http://www.openni.org/}} uses the depth camera information to find one or more users. When the user stands in the calibration pose (see figure \ref{fig:calibration_pose}) the user tracker finds the user's simplefied skeleton as is given in \ref{fig:skeleton}. The 3D positions of the joints are returned along with their rotation. With this information the skeleton for the 3D avatar in Unity is known. But for the alignment of the clothing with the user's body the skeleton alone is not sufficient. The exact sizes of each bodypart should be approximated. Section \ref{sec:size_estimation} describes how these sizes are found.
-
-
-\subsection{Virtual clothes}
-\label{sec:virtual_clothes}
-
-Since the release of Unity 3.0 the interactive cloth is included as alternative for skinned cloth. This component turns every possible mesh into a cloth and interacts with colliders. By making the bodyparts of the user's avatar colliders, an interactive clothing should be interacting just like in reality. Interactive cloth seemed therefore a very good and realistic option for our virtual dressing room. The full interaction with environment and user body has a downside though: it is computationally complex. Besides that we experienced an incorrectly big response of the interactive cloth to the user body, resulting in catapulted clothing. These cons could be caused by the short time interactive cloth exist. If the last con is corrected, we think interactive cloth is more realistic than skinned cloth. For now however it is not useful in our implementation.
-
-To create of more realistic scene we measure the light conditions of the RGB image. This is done by converting the image to an HSV image and take an average of the intensity from the user.
-A point light in Unity will try to recreate the right light conditions.
-
+The Kinect sensor is equipped with a RGB and depth camera. The user tracking included in the OpenNI framework \footnote{\url{http://www.openni.org/}} uses the depth camera information to find one or more users. When the user stands in the calibration pose (see figure \ref{fig:calibration_pose}) the user tracker finds the user's simplefied skeleton as is given in \ref{fig:skeleton}. The 3D positions of the joints are returned along with their rotation. With this information the skeleton for the 3D avatar in Unity is known. But for the alignment of the clothing with the user's body the skeleton alone is not sufficient. The exact sizes of each bodypart should be approximated.
 
 \subsection{Size estimation}
 \label{sec:size_estimation}
@@ -120,6 +108,16 @@ The second option, although no ideal, proved more accurate than the first method
 \\
 Because we can only see the front part of the user body, we have to estimate the full girth. This is done by multiplying the front part with a factor 2.1.
 Before giving the estimate size of the user, we take the average over 20 frames before drawing an conclusion.
+
+
+\subsection{Virtual clothes}
+\label{sec:virtual_clothes}
+
+Since the release of Unity 3.0 the interactive cloth is included as alternative for skinned cloth. This component turns every possible mesh into a cloth and interacts with colliders. By making the bodyparts of the user's avatar colliders, an interactive clothing should be interacting just like in reality. Interactive cloth seemed therefore a very good and realistic option for our virtual dressing room. The full interaction with environment and user body has a downside though: it is computationally complex. Besides that we experienced an incorrectly big response of the interactive cloth to the user body, resulting in catapulted clothing. These cons could be caused by the short time interactive cloth exist. If the last con is corrected, we think interactive cloth is more realistic than skinned cloth. For now however it is not useful in our implementation.
+
+To create of more realistic scene we measure the light conditions of the RGB image. This is done by converting the image to an HSV image and take an average of the intensity from the user.
+A point light in Unity will try to recreate the right light conditions.
+
 
 \subsection{Application overview}
 \label{sec:application_overview}
