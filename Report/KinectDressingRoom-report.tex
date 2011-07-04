@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{url}
 \usepackage{graphicx}
+\usepackage{subfigure}
 
 \title{Kinect Virtual Dressing Room}
 
@@ -122,8 +123,43 @@ Before giving the estimate size of the user, we take the average over 20 frames 
 
 \subsection{Application overview}
 \label{sec:application_overview}
+The gui of the virtual dressing room consists of an RGB image, 3 buttons and a calibration progress marker. To use the application the user first has to calibrate with the system. This is done by taking the calibration pose see <figure:lable:calibrarionPose>. The marker on the top right of the screen will display the progress. 
 
-Walkthrough, gui, mooie plaatjes
+\begin{figure}[ht]
+\centering
+	\subfigure[looking for user] {
+	\includegraphics[scale=0.5]{lookingforuser.png} 
+	\label{fig:lookingforuser}
+	}
+	
+	\subfigure[looking for calibration pose] {
+	\includegraphics[scale=0.5]{looking.png} 
+	\label{fig:lookingforuser}
+	}
+	
+	\subfigure[calibrating] {
+	\includegraphics[scale=0.5]{calibrating.png} 
+	\label{fig:lookingforuser}
+	}
+	
+	\subfigure[calibrated] {
+	\includegraphics[scale=0.5]{calibrated.png} 
+	\label{fig:lookingforuser}
+	}
+\end{figure}
+
+When the calibration step is completed the user can change there clothing by activating or deactivating the available buttons on the screen. This can be done by hovering either the left or right hand over the button.
+
+\begin{figure}[htp]
+\centering
+\includegraphics[scale=0.3]{GUI_jacket_morris.png} 
+\caption{An user wearing a blue jacket.}
+\label{fig:jacket_morris}
+\end{figure}
+
+<image dress>
+Figure x. An user wearing a dress <maybe ask girl…>
+
 
 \section{Discussion}
 \label{sec:discussion}
