@@ -142,7 +142,7 @@ A point light in Unity will try to recreate the right light conditions.
 
 \subsection{Body part masking}
 \label{sec:bodypart_masking}
-In section \ref{sec:related_work} is mentioned that the state of the art virtual dressing room by FaceCake does not provide a solution for body parts that should appear before the clothing. In our implementation the 3D information for the avatar and the clothing is available to make this more realistic. Unity gives a solution by depth masking shaders. For the body parts a material with masking shaders is selected and the clothing gets a material that is masked when behind the body parts. And as the clothing is displayed before the RGB image, the body part is shown as if it is before the clothing (Figure \ref{fig:shader}).
+In section \ref{sec:related_work} is mentioned that the state of the art virtual dressing room by FaceCake does not provide a solution for body parts that should appear before the clothing. In our implementation the 3D information for the avatar and the clothing is available to make this more realistic. Unity gives a solution by depth masking shaders. For the body parts a material with masking shaders is selected and the clothing gets a material that is masked when behind the body parts. And as the clothing is displayed before the RGB image, the body part is shown as if it is in front of the clothing (Figure \ref{fig:shader}).
 
  \begin{figure}[htp]
 \centering
