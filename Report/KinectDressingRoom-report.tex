@@ -106,7 +106,7 @@ The Kinect sensor is equipped with a RGB and depth camera. The user tracking inc
 \label{sec:size_estimation}
 
 On calibrating the user size and length is measured. This information is used to change the user model to fit to the user body. Another feature is to recommend the right size of clothing. The length of each limb is taken by computing the distance between each joint from the skeleton.
-The size of the body is taken by estimating the girth of the chest on a number of points.
+The size of the body is taken by estimating the girth of the chest on a number of points (figure ~\ref{fig:size_estimation}).
 
 \begin{figure*}[htp]
 \centering
@@ -124,7 +124,7 @@ Although the first solution seems the best, it is not robust to a noisy sensor a
 The second option, although no ideal, proved more accurate than the first method.
 
 Because we can only see the front part of the user body, we have to estimate the full girth. This is done by multiplying the front part with a factor 2.1.
-Before giving the estimate size of the user, we take the average over 20 frames before drawing an conclusion.
+Before giving the estimate size of the user, we take the average over 20 frames before drawing a conclusion.
 
 
 \subsection{Virtual clothes}
@@ -191,7 +191,7 @@ Items currently available in this project:
 \item Pants 
 \item Dress.
 \end{itemize}
-Here a few examples of users wearing the virtual clothes.
+Here a few examples of users wearing the virtual clothes in figure ~\ref{fig:jacket_morris} and figure ~\ref{fig:dress_fedde}.
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.5\textwidth]{GUI_jacket_morris.png} 
@@ -219,7 +219,7 @@ Although the size estimation does work well under a simple algorithm, it will be
 Accuracy might increase by using a large dataset of trainings data and a linear regressing classifier to estimate the girth.
 
 
-Kleding zou meer realistisch zijn met hulp van 3d artists (textures, pasvorm)
+%Kleding zou meer realistisch zijn met hulp van 3d artists (textures, pasvorm)
 
 \section{Conclusion}
 \label{sec:conclusion}
