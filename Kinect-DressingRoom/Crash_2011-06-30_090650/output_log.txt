@@ -1,0 +1,275 @@
+Direct3D:
+    Version:  Direct3D 9.0c [igdumd32.dll 8.14.10.1930]
+    Renderer: Mobile Intel(R) 945 Express Chipset Family
+    Vendor:   Intel
+    VRAM:     256 MB
+    Caps:     Shader=20 DepthRT=0 NativeDepth=0 NativeShadow=0 DF16=0 DF24=0 INTZ=0 RAWZ=0 NULL=0 RESZ=0 SlowINTZ=0
+desktop: 1280x800 60Hz; virtual: 1280x800 at 0,0
+Direct3D:
+    Version:  Direct3D 9.0c [igdumd32.dll 8.14.10.1930]
+    Renderer: Mobile Intel(R) 945 Express Chipset Family
+    Vendor:   Intel
+    VRAM:     256 MB
+    Caps:     Shader=20 DepthRT=0 NativeDepth=0 NativeShadow=0 DF16=0 DF24=0 INTZ=0 RAWZ=0 NULL=0 RESZ=0 SlowINTZ=0
+desktop: 1280x800 60Hz; virtual: 1280x800 at 0,0
+<I> Initializing (RawInput).
+<RI> Input initialized.
+<I> Initializing (RawInput).
+<RI> Input initialized.
+Non platform assembly: data-027C8548 (this message is harmless)
+Non platform assembly: data-0282D9B8 (this message is harmless)
+Non platform assembly: data-02831828 (this message is harmless)
+Non platform assembly: data-02838698 (this message is harmless)
+Waiting for users to calibrate
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NiteController:.ctor(NewUserCallback)
+DressingRoom:Start()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+[1] New user
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NiteController:OnNewUser(UInt32)
+NiteWrapper:Update(Boolean)
+NiteController:Update()
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+[2] New user
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NiteController:OnNewUser(UInt32)
+NiteWrapper:Update(Boolean)
+NiteController:Update()
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+[2] Calibration started
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NiteController:OnCalibrationStarted(UInt32)
+NiteWrapper:Update(Boolean)
+NiteController:Update()
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+[3] New user
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NiteController:OnNewUser(UInt32)
+NiteWrapper:Update(Boolean)
+NiteController:Update()
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+[2] Calibration success
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NiteController:OnCalibrationSuccess(UInt32)
+NiteWrapper:Update(Boolean)
+NiteController:Update()
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+Stopping to look for users
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NiteController:OnCalibrationSuccess(UInt32)
+NiteWrapper:Update(Boolean)
+NiteController:Update()
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+XXS : extra extra small (72.0922867235912)
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NiteController:OnCalibrationSuccess(UInt32)
+NiteWrapper:Update(Boolean)
+NiteController:Update()
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+Initializing the user body
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UserBody:InitBody(NiteController)
+DressingRoom:OnNewUser()
+NiteController:OnCalibrationSuccess(UInt32)
+NiteWrapper:Update(Boolean)
+NiteController:Update()
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+Removing all clothing
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+ClothingManager:RemoveAllClothing()
+DressingRoomGUI:HandleUserEvent(UserBody)
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+Adding Jacket
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+ClothingManager:AddClothing(String)
+DressingRoomGUI:HandleUserEvent(UserBody)
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+Removing all clothing
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+ClothingManager:RemoveAllClothing()
+DressingRoomGUI:HandleUserEvent(UserBody)
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+Adding Jacket
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+ClothingManager:AddClothing(String)
+DressingRoomGUI:HandleUserEvent(UserBody)
+DressingRoom:Update()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+Non platform assembly: data-026D8108 (this message is harmless)
+Non platform assembly: data-0273D578 (this message is harmless)
+Non platform assembly: data-027413E8 (this message is harmless)
+Non platform assembly: data-02748258 (this message is harmless)
+Error initializing OpenNI: Got a timeout while waiting for a network command to complete!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NiteController:.ctor(NewUserCallback)
+DressingRoom:Start()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
+Crash!!!
+
+========== Outputing stack ==================
+
+SymInit: Symbol-SearchPath: '.;C:\Users\carsten\UvA\Kinect-DressingRoom v0.1\Kinect-DressingRoom;C:\Users\carsten\UvA\Kinect-DressingRoom v0.1\Kinect-DressingRoom;C:\Windows;C:\Windows\system32;SRV*C:\websymbols*http://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'carsten'
+OS-Version: 6.1.7601 (Service Pack 1) 0x100-0x1
+C:\Users\carsten\UvA\Kinect-DressingRoom v0.1\Kinect-DressingRoom\DressingRoom.exe:DressingRoom.exe (00400000), size: 7241728 (result: 0), SymType: '-exported-', PDB: 'C:\Users\carsten\UvA\Kinect-DressingRoom v0.1\Kinect-DressingRoom\DressingRoom.exe', fileVersion: 3.3.0.63135
+C:\Windows\SYSTEM32\ntdll.dll:ntdll.dll (77230000), size: 1294336 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\ntdll.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\kernel32.dll:kernel32.dll (765C0000), size: 868352 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\kernel32.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\KERNELBASE.dll:KERNELBASE.dll (74CE0000), size: 303104 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\KERNELBASE.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\USER32.dll:USER32.dll (76A70000), size: 823296 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\USER32.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\GDI32.dll:GDI32.dll (76080000), size: 319488 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\GDI32.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\LPK.dll:LPK.dll (75240000), size: 40960 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\LPK.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\USP10.dll:USP10.dll (76910000), size: 643072 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\USP10.dll', fileVersion: 1.626.7601.17514
+C:\Windows\system32\msvcrt.dll:msvcrt.dll (75180000), size: 704512 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\msvcrt.dll', fileVersion: 7.0.7600.16385
+C:\Windows\system32\ADVAPI32.dll:ADVAPI32.dll (766A0000), size: 655360 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\ADVAPI32.dll', fileVersion: 6.1.7601.17514
+C:\Windows\SYSTEM32\sechost.dll:sechost.dll (76390000), size: 102400 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\SYSTEM32\sechost.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\RPCRT4.dll:RPCRT4.dll (764D0000), size: 659456 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\RPCRT4.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\SHELL32.dll:SHELL32.dll (75410000), size: 12886016 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\SHELL32.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\SHLWAPI.dll:SHLWAPI.dll (769B0000), size: 356352 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\SHLWAPI.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\ole32.dll:ole32.dll (760D0000), size: 1425408 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\ole32.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\VERSION.dll:VERSION.dll (74110000), size: 36864 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\VERSION.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\OPENGL32.dll:OPENGL32.dll (69D10000), size: 819200 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\OPENGL32.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\GLU32.dll:GLU32.dll (76D00000), size: 139264 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\GLU32.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\DDRAW.dll:DDRAW.dll (69E70000), size: 946176 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\DDRAW.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\DCIMAN32.dll:DCIMAN32.dll (77130000), size: 24576 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\DCIMAN32.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\SETUPAPI.dll:SETUPAPI.dll (74F60000), size: 1691648 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\SETUPAPI.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\CFGMGR32.dll:CFGMGR32.dll (74CB0000), size: 159744 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\CFGMGR32.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\OLEAUT32.dll:OLEAUT32.dll (76770000), size: 585728 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\OLEAUT32.dll', fileVersion: 6.1.7601.17567
+C:\Windows\system32\DEVOBJ.dll:DEVOBJ.dll (74C90000), size: 73728 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\DEVOBJ.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\dwmapi.dll:dwmapi.dll (730B0000), size: 77824 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\dwmapi.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\WINMM.dll:WINMM.dll (73BA0000), size: 204800 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\WINMM.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\WS2_32.dll:WS2_32.dll (76580000), size: 217088 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\WS2_32.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\NSI.dll:NSI.dll (75230000), size: 24576 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\NSI.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\IMM32.dll:IMM32.dll (77370000), size: 126976 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\IMM32.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\MSCTF.dll:MSCTF.dll (762C0000), size: 835584 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\MSCTF.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\HID.DLL:HID.DLL (73110000), size: 36864 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\HID.DLL', fileVersion: 6.1.7600.16385
+C:\Windows\system32\WSOCK32.dll:WSOCK32.dll (6C7F0000), size: 28672 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\WSOCK32.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\MSACM32.dll:MSACM32.dll (73050000), size: 81920 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\MSACM32.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\uxtheme.dll:uxtheme.dll (73430000), size: 262144 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\uxtheme.dll', fileVersion: 6.1.7600.16385
+C:\Users\carsten\UvA\Kinect-DressingRoom v0.1\Kinect-DressingRoom\DressingRoom_Data\Mono\mono.dll:mono.dll (10000000), size: 2179072 (result: 0), SymType: '-exported-', PDB: 'C:\Users\carsten\UvA\Kinect-DressingRoom v0.1\Kinect-DressingRoom\DressingRoom_Data\Mono\mono.dll'
+C:\Windows\system32\PSAPI.DLL:PSAPI.DLL (76070000), size: 20480 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\PSAPI.DLL', fileVersion: 6.1.7600.16385
+C:\Windows\system32\MSWSOCK.dll:MSWSOCK.dll (74680000), size: 245760 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\MSWSOCK.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\CRYPTBASE.dll:CRYPTBASE.dll (74B90000), size: 49152 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\CRYPTBASE.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\d3d9.dll:d3d9.dll (68240000), size: 1847296 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\d3d9.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\d3d8thk.dll:d3d8thk.dll (76D30000), size: 24576 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\d3d8thk.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\igdumd32.dll:igdumd32.dll (02DD0000), size: 3895296 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\igdumd32.dll', fileVersion: 8.14.10.1930
+C:\Windows\system32\CLBCatQ.DLL:CLBCatQ.DLL (76230000), size: 536576 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\CLBCatQ.DLL', fileVersion: 2001.12.8530.16385
+C:\Windows\system32\wbem\wbemprox.dll:wbemprox.dll (72B20000), size: 40960 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\wbem\wbemprox.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\wbemcomn.dll:wbemcomn.dll (72AC0000), size: 376832 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\wbemcomn.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\CRYPTSP.dll:CRYPTSP.dll (746C0000), size: 90112 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\CRYPTSP.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\rsaenh.dll:rsaenh.dll (74460000), size: 241664 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\rsaenh.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\RpcRtRemote.dll:RpcRtRemote.dll (74C00000), size: 57344 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\RpcRtRemote.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\wbem\wbemsvc.dll:wbemsvc.dll (6F870000), size: 61440 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\wbem\wbemsvc.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\wbem\fastprox.dll:fastprox.dll (703A0000), size: 614400 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\wbem\fastprox.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\NTDSAPI.dll:NTDSAPI.dll (70380000), size: 98304 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\NTDSAPI.dll', fileVersion: 6.1.7600.16385
+C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.17514_none_41e6975e2bd6f2b2\comctl32.dll:comctl32.dll (734D0000), size: 1695744 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.17514_none_41e6975e2bd6f2b2\comctl32.dll', fileVersion: 6.10.7601.17514
+C:\Windows\system32\xinput9_1_0.dll:xinput9_1_0.dll (6F640000), size: 36864 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\xinput9_1_0.dll', fileVersion: 6.1.7600.16385
+C:\Windows\System32\MMDevApi.dll:MMDevApi.dll (73ED0000), size: 233472 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\System32\MMDevApi.dll', fileVersion: 6.1.7601.17514
+C:\Windows\System32\PROPSYS.dll:PROPSYS.dll (73AA0000), size: 1003520 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\System32\PROPSYS.dll', fileVersion: 7.0.7601.17514
+C:\Windows\system32\wdmaud.drv:wdmaud.drv (730E0000), size: 196608 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\wdmaud.drv', fileVersion: 6.1.7601.17514
+C:\Windows\system32\ksuser.dll:ksuser.dll (730D0000), size: 16384 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\ksuser.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\AVRT.dll:AVRT.dll (73FC0000), size: 28672 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\AVRT.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\AUDIOSES.DLL:AUDIOSES.DLL (73960000), size: 221184 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\AUDIOSES.DLL', fileVersion: 6.1.7601.17514
+C:\Windows\system32\msacm32.drv:msacm32.drv (73070000), size: 32768 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\msacm32.drv', fileVersion: 6.1.7600.16385
+C:\Windows\system32\midimap.dll:midimap.dll (73040000), size: 28672 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\midimap.dll', fileVersion: 6.1.7600.16385
+C:\Users\carsten\UvA\Kinect-DressingRoom v0.1\Kinect-DressingRoom\UnityInterface.dll:UnityInterface.dll (6E230000), size: 77824 (result: 0), SymType: '-exported-', PDB: 'C:\Users\carsten\UvA\Kinect-DressingRoom v0.1\Kinect-DressingRoom\UnityInterface.dll'
+C:\Program Files\OpenNI\bin\openNI.dll:openNI.dll (68500000), size: 262144 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\OpenNI\bin\openNI.dll', fileVersion: 1.1.0.41
+C:\Windows\WinSxS\x86_microsoft.vc90.crt_1fc8b3b9a1e18e3b_9.0.30729.6161_none_50934f2ebcb7eb57\MSVCR90.dll:MSVCR90.dll (709A0000), size: 667648 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\WinSxS\x86_microsoft.vc90.crt_1fc8b3b9a1e18e3b_9.0.30729.6161_none_50934f2ebcb7eb57\MSVCR90.dll', fileVersion: 9.0.30729.6161
+C:\Program Files\PrimeSense\NITE\bin\XnVNITE.dll:XnVNITE.dll (67CA0000), size: 925696 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\NITE\bin\XnVNITE.dll', fileVersion: 1.3.0.17
+C:\Windows\WinSxS\x86_microsoft.vc90.crt_1fc8b3b9a1e18e3b_9.0.30729.6161_none_50934f2ebcb7eb57\MSVCP90.dll:MSVCP90.dll (6FF50000), size: 581632 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\WinSxS\x86_microsoft.vc90.crt_1fc8b3b9a1e18e3b_9.0.30729.6161_none_50934f2ebcb7eb57\MSVCP90.dll', fileVersion: 9.0.30729.6161
+C:\Windows\system32\MSVCR100.dll:MSVCR100.dll (646E0000), size: 774144 (result: 0), SymType: 'PDB', PDB: 'C:\Windows\system32\MSVCR100.dll', fileVersion: 10.0.30319.415
+C:\Windows\system32\MSVCP100.dll:MSVCP100.dll (68160000), size: 430080 (result: 0), SymType: 'PDB', PDB: 'C:\Windows\system32\MSVCP100.dll', fileVersion: 10.0.30319.415
+C:\Program Files\PrimeSense\Sensor\Bin\XnDeviceFile.dll:XnDeviceFile.dll (67C60000), size: 217088 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\Sensor\Bin\XnDeviceFile.dll', fileVersion: 5.0.1.32
+C:\Program Files\PrimeSense\Sensor\Bin\XnCore.dll:XnCore.dll (71B60000), size: 53248 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\Sensor\Bin\XnCore.dll', fileVersion: 5.0.1.32
+C:\Program Files\PrimeSense\Sensor\Bin\XnDDK.dll:XnDDK.dll (64660000), size: 507904 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\Sensor\Bin\XnDDK.dll', fileVersion: 5.0.1.32
+C:\Program Files\PrimeSense\Sensor\Bin\XnFormats.dll:XnFormats.dll (66010000), size: 389120 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\Sensor\Bin\XnFormats.dll', fileVersion: 5.0.1.32
+C:\Program Files\PrimeSense\Sensor\Bin\XnDeviceSensorV2.dll:XnDeviceSensorV2.dll (5FA90000), size: 520192 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\Sensor\Bin\XnDeviceSensorV2.dll', fileVersion: 5.0.1.32
+C:\Program Files\PrimeSense\NITE\Features_1_3_0\Bin\XnVFeatures.dll:XnVFeatures.dll (5B910000), size: 2719744 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\NITE\Features_1_3_0\Bin\XnVFeatures.dll', fileVersion: 1.3.0.17
+C:\Program Files\PrimeSense\NITE\Features_1_3_1\Bin\XnVFeatures_1_3_1.dll:XnVFeatures_1_3_1.dll (5B6C0000), size: 2416640 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\NITE\Features_1_3_1\Bin\XnVFeatures_1_3_1.dll', fileVersion: 1.3.1.5
+C:\Program Files\PrimeSense\NITE\Hands_1_3_0\Bin\XnVHandGenerator.dll:XnVHandGenerator.dll (5F9B0000), size: 880640 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\NITE\Hands_1_3_0\Bin\XnVHandGenerator.dll', fileVersion: 1.3.0.17
+C:\Program Files\PrimeSense\NITE\Hands_1_3_1\Bin\XnVHandGenerator_1_3_1.dll:XnVHandGenerator_1_3_1.dll (5F250000), size: 892928 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\NITE\Hands_1_3_1\Bin\XnVHandGenerator_1_3_1.dll', fileVersion: 1.3.1.5
+C:\Program Files\PrimeSense\SensorKinect\Bin\XnDeviceFile.dll:XnDeviceFile.dll (68F90000), size: 139264 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\SensorKinect\Bin\XnDeviceFile.dll', fileVersion: 5.0.1.32
+C:\Program Files\PrimeSense\SensorKinect\Bin\XnDeviceSensorV2KM.dll:XnDeviceSensorV2KM.dll (68E90000), size: 315392 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\PrimeSense\SensorKinect\Bin\XnDeviceSensorV2KM.dll', fileVersion: 5.0.1.32
+C:\Program Files\OpenNI\Bin\nimRecorder.dll:nimRecorder.dll (69CC0000), size: 98304 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\OpenNI\Bin\nimRecorder.dll', fileVersion: 1.1.0.41
+C:\Program Files\OpenNI\Bin\nimMockNodes.dll:nimMockNodes.dll (69BF0000), size: 106496 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\OpenNI\Bin\nimMockNodes.dll', fileVersion: 1.1.0.41
+C:\Program Files\OpenNI\Bin\nimCodecs.dll:nimCodecs.dll (5F200000), size: 299008 (result: 0), SymType: '-exported-', PDB: 'C:\Program Files\OpenNI\Bin\nimCodecs.dll', fileVersion: 1.1.0.41
+C:\Windows\system32\WINTRUST.dll:WINTRUST.dll (74D30000), size: 184320 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\WINTRUST.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\CRYPT32.dll:CRYPT32.dll (74D60000), size: 1167360 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\CRYPT32.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\MSASN1.dll:MSASN1.dll (74C80000), size: 49152 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\MSASN1.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\apphelp.dll:apphelp.dll (74B40000), size: 311296 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\apphelp.dll', fileVersion: 6.1.7601.17514
+C:\Windows\System32\wshtcpip.dll:wshtcpip.dll (741A0000), size: 20480 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\System32\wshtcpip.dll', fileVersion: 6.1.7600.16385
+C:\Windows\system32\dbghelp.dll:dbghelp.dll (6DD00000), size: 962560 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\dbghelp.dll', fileVersion: 6.1.7601.17514
+C:\Windows\system32\SspiCli.dll:SspiCli.dll (74B20000), size: 110592 (result: 0), SymType: '-exported-', PDB: 'C:\Windows\system32\SspiCli.dll', fileVersion: 6.1.7601.17514
+ERROR: SymGetSymFromAddr64, GetLastError: 'Attempt to access invalid address.
+' (Address: 6E231E6E)
+ERROR: SymGetLineFromAddr64, GetLastError: 'Attempt to access invalid address.
+' (Address: 6E231E6E)
+6E231E6E (UnityInterface): (filename not available): (function-name not available)
+ERROR: SymGetLineFromAddr64, GetLastError: 'Attempt to access invalid address.
+' (Address: 6E232CC5)
+6E232CC5 (UnityInterface): (filename not available): Update
+ERROR: SymGetLineFromAddr64, GetLastError: 'Attempt to access invalid address.
+' (Address: 77282FE7)
+77282FE7 (ntdll): (filename not available): RtlAllocateHeap
+ERROR: SymGetSymFromAddr64, GetLastError: 'The specified module could not be found.
+' (Address: 02550000)
+ERROR: SymGetLineFromAddr64, GetLastError: 'The specified module could not be found.
+' (Address: 02550000)
+ERROR: SymGetModuleInfo64, GetLastError: 'A dynamic link library (DLL) initialization routine failed.
+' (Address: 02550000)
+02550000 ((module-name not available)): (filename not available): (function-name not available)
+
+========== End of Outputing stack ===========
+

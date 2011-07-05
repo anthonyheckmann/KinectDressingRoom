@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+<clothing label="Dress">
+	<attachment>Left_Shoulder</attachment>
+	<attachment>Right_Shoulder</attachment>
+</clothing>
+<clothing label="Hippy Trousers">
+	<attachment>Left_Hip</attachment>
+	<attachment>Right_Hip</attachment>
+</clothing>
+<clothing label="Cape">
+	<attachment>Left_Shoulder</attachment>
+	<attachment>Right_Shoulder</attachment>
+</clothing>
+</root>

@@ -1,0 +1,31 @@
+<OpenNI>
+ <Licenses>
+  <License vendor="PrimeSense" key="0KOIk2JeIBYClPWVnMoRKn5cdY4="/>
+ </Licenses>
+ <Log writeToConsole="true" writeToFile="false">
+  <!-- 0 - Verbose, 1 - Info, 2 - Warning, 3 - Error (default) -->
+  <LogLevel value="3"/>
+  <Masks>
+   <Mask name="ALL" on="false"/>
+  </Masks>
+  <Dumps>
+  </Dumps>
+ </Log>
+ <ProductionNodes>
+  <Node type="Depth">
+   <Configuration>
+    <MapOutputMode xRes="640" yRes="480" FPS="30"/>
+    <Mirror on="true"/>
+   </Configuration>
+  </Node>
+  <Node type="Image" name="Image1" stopOnError="false">
+   <Configuration>
+    <MapOutputMode xRes="640" yRes="480" FPS="30"/>
+    <Mirror on="false"/>
+   </Configuration>
+  </Node>
+  <Node type="User" />
+  <Node type="Hands" />
+  <Node type="Gesture" />
+ </ProductionNodes>
+</OpenNI>

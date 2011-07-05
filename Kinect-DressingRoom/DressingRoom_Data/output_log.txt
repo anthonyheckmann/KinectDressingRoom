@@ -1,0 +1,21 @@
+Direct3D:
+    Version:  Direct3D 9.0c [igdumd32.dll 8.14.10.1930]
+    Renderer: Mobile Intel(R) 945 Express Chipset Family
+    Vendor:   Intel
+    VRAM:     256 MB
+    Caps:     Shader=20 DepthRT=0 NativeDepth=0 NativeShadow=0 DF16=0 DF24=0 INTZ=0 RAWZ=0 NULL=0 RESZ=0 SlowINTZ=0
+desktop: 1280x800 60Hz; virtual: 1280x800 at 0,0
+<I> Initializing (RawInput).
+<RI> Input initialized.
+Non platform assembly: data-02309D38 (this message is harmless)
+Non platform assembly: data-0236F148 (this message is harmless)
+Non platform assembly: data-02371F58 (this message is harmless)
+Non platform assembly: data-02379168 (this message is harmless)
+Waiting for users to calibrate
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+NiteController:.ctor(NewUserCallback)
+DressingRoom:Start()
+ 
+(Filename: C:/BuildAgent/work/6bc5f79e0a4296d6/Runtime/ExportGenerated/StandalonePlayer/BaseClass.cpp Line: 2505)
+
