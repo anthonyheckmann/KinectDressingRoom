@@ -166,19 +166,19 @@ In section \ref{sec:related_work} is mentioned that the state of the art virtual
 The GUI of the virtual dressing room consists of an RGB image, 3 buttons and a calibration progress marker. To use the application the user first has to calibrate with the system. This is done by taking the calibration pose (Figure \ref{fig:calibrationPose}), it will take a few secondes before the system is calibrated. The marker on the top right of the screen will display the calibration progress (Figure \ref{fig:progressmarker}).
 \begin{figure}[h!]
 \centering
-	\subfigure[looking for user] {
-	\includegraphics[scale=0.5]{lookingforuser.png} 
+	\subfigure[] {
+	\includegraphics[scale=0.5]{lookingforuser.png}
+	} 
+	\subfigure[] {
+	\includegraphics[scale=0.5]{looking.png}
+	} 
+	\subfigure[] {
+	\includegraphics[scale=0.5]{calibrating.png}
+	} 
+	\subfigure[] {
+	\includegraphics[scale=0.5]{calibrated.png}
 	}
-	\subfigure[looking for calibration pose] {
-	\includegraphics[scale=0.5]{looking.png} 
-	}
-	\subfigure[calibrating] {
-	\includegraphics[scale=0.5]{calibrating.png} 
-	}
-	\subfigure[calibrated] {
-	\includegraphics[scale=0.5]{calibrated.png} 
-	}
-	\caption{Different progress marker states} 
+	\caption{Different progress marker states: (a) looking for user, (b) waiting for calibration pose, (c) calibration started, (d) calibration success.} 
 	\label{fig:progressmarker}
 \end{figure}
 
@@ -192,25 +192,21 @@ The GUI of the virtual dressing room consists of an RGB image, 3 buttons and a c
 When the calibration step is completed the user can change the clothing by activating or deactivating the available buttons on the screen. This can be done by hovering either the left or right hand over the button.
 Items currently available in this project:
 \begin{itemize}
+\setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
 \item Jacket.
 \item Pants 
 \item Dress.
 \end{itemize}
 
-Figure \ref{fig:jacket_morris} and \ref{fig:dress_fedde} show a few examples of users wearing the virtual clothes.
+Figures \ref{fig:shader} and \ref{fig:jacket_morris} show a few examples of users wearing the virtual clothes.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.5\textwidth]{GUI_jacket_morris.png} 
 \caption{A user wearing a blue jacket.}
 \label{fig:jacket_morris}
-\end{figure}
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.5\textwidth]{dress_fedde.png} 
-\caption{A user wearing a dress.}
-\label{fig:dress_fedde}
 \end{figure}
 
 \section{Discussion}
