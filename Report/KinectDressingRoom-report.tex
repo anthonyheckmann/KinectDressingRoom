@@ -11,7 +11,7 @@
 
 \author{Fedde Burgers \\ 5705509 \\ \texttt{f.j.b.burgers@uva.nl} \and Morris Franken \\ 6151825 \\ \texttt{morrisef@science.uva.nl} \and Carsten van Weelden \\ 0518824 \\ \texttt{cweelden@science.uva.nl}}
 
-\hyphenation{re-commend}
+\hyphenation{real-is-tic real-is-tically web-cam}
 
 \begin{document}
 
@@ -35,7 +35,7 @@ In this project we use the Kinect sensor to create an augmented reality dressing
 \subsection{Project goals}
 \label{sec:project_goals}
 
-This project aims to create an augmented reality dressing room. This requires real-time tracking of the user pose as well as realistic virtual clothing. For the pose tracking the Kinect sensor is used which gives more complete and accurate tracking of the user pose than the marker based or image-feature based tracking which is traditionally used in augmented reality applications. For the clothing we created a set of 3d models that can be rendered into the scene. The focus of this project is on realistic interaction between the user and the virtual clothing. To achieve this the clothing needs to:
+This project aims to create an augmented reality dressing room. This requires real-time tracking of the user pose as well as realistic virtual clothing. For the pose tracking the Kinect sensor is used which gives more complete and accurate tracking of the user pose than the marker based or image feature based tracking which is traditionally used in augmented reality applications. For the clothing we created a set of 3d models that can be rendered into the scene. The focus of this project is on realistic interaction between the user and the virtual clothing. To achieve this the clothing needs to:
 \begin{itemize}
 \setlength{\itemsep}{0pt}
   \setlength{\parskip}{0pt}
@@ -45,7 +45,7 @@ This project aims to create an augmented reality dressing room. This requires re
 \item be realistically rendered into the environment.
 \end{itemize}
 
-The rest of this paper is organized as follows. Section \ref{sec:related_work} discusses previous implementations of the virtual dressing-room concept. Section \ref{sec:implementation} presents our own implementation and the choices that we made and section \ref{sec:discussion} discusses some of the limitations of our approach. Our conclusions are presented in section \ref{sec:conclusion}.
+The rest of this paper is organized as follows. Section \ref{sec:related_work} discusses previous implementations of the virtual dressing room concept. Section \ref{sec:implementation} presents our own implementation and the choices that we made and section \ref{sec:discussion} discusses some of the limitations of our approach. Our conclusions are presented in section \ref{sec:conclusion}.
 
 
 \section{Related work}
@@ -70,8 +70,8 @@ A more appropriate manner of alignment would be to adjust the position, rotation
 	\subfigure[Right alignment is found.] {
 	\includegraphics[scale=0.1]{marker_right.png} 
 	}
-	\label{fig:marker_alignment}
 	\caption{User tracking using markers.}
+	\label{fig:marker_alignment}
 \end{figure}
 
 The introduction of the Kinect gave relatively easy and cheap access to a depth camera. And with middleware such as the OpenNI framework the user's pose can be tracked quite accurately. A marketing company by the name of FaceCake\footnote{\url{http://www.facecake.com/}} recently  implemented a virtual dressing room which aligns the image of the clothing with the user's body using the Kinect's pose tracking. An example frame from this application is shown in figure \ref{fig:facecake}\footnote{See \url{http://www.youtube.com/watch?v=A0DB26zYq4A} for a demo of FaceCake's virtual dressing room.}. This solution is currently the state of the art augmented reality dressing room.
