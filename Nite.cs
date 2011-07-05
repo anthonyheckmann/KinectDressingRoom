@@ -766,9 +766,9 @@ public class NiteController {
 	}
 	
 	public void UpdateGUI () {
-		if (clothSize != "") {
-			GUI.Box(new Rect(100,100,300,200), strIntensity);
-		}
+//		if (clothSize != "") {
+//			GUI.Box(new Rect(100,100,300,200), strIntensity);
+//		}
 		if (!calibratedUser) {
 			//gui.DrawUserMap();
 		}
