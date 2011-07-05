@@ -18,10 +18,10 @@
 \maketitle
 
 \begin{abstract}
-This paper presents an augmented reality dressing room application which allows a user to try on virtual clothes. The user pose is tracked using the Kinect sensor and virtual clothes are aligned with the user pose. The clothing moves and folds realistically and the lighting intensity of the cloth render is adapted to match ambient lighting conditions. The presented application improves on related augmented reality applications by adding full user pose tracking and by using 3D clothing models combined with cloth simulation instead of 2D images. 
-\end{abstract}
+\small{This paper presents an augmented reality dressing room application which allows a user to try on virtual clothes. The user pose is tracked using the Kinect sensor and virtual clothes are aligned with the user pose. The clothing moves and folds realistically and the lighting intensity of the cloth render is adapted to match ambient lighting conditions. The presented application improves on related augmented reality applications by adding full user pose tracking and by using 3D clothing models combined with cloth simulation instead of 2D images. }
 
 \par\noindent {\small{\em Keywords\/}: Augmented Reality, Virtual Clothing, User Tracking, Kinect.}
+\end{abstract}
 
 \section{Introduction}
 \label{sec:introduction}
@@ -198,17 +198,8 @@ The GUI of the virtual dressing room consists of an RGB image, 3 buttons and a c
 \end{figure}
 
 When the calibration step is completed the user can change the clothing by activating or deactivating the available buttons on the screen. This can be done by hovering either the left or right hand over the button.
-Items currently available in this project:
-\begin{itemize}
-\setlength{\itemsep}{0pt}
-  \setlength{\parskip}{0pt}
-  \setlength{\parsep}{0pt}
-\item Jacket.
-\item Pants 
-\item Dress.
-\end{itemize}
-
-Figures \ref{fig:shader} and \ref{fig:jacket_morris} show a few examples of users wearing the virtual clothes.
+Currently a jacket, a pair of pants, and are dress are available as clothing items in this project.
+Figures \ref{fig:shader} and \ref{fig:jacket_morris} show a few examples of users wearing these virtual clothes.
 
 \begin{figure}[h!]
 \centering
@@ -226,8 +217,8 @@ For any augmented reality application it is important to have realistic interact
 
 Our approach to display the RGB image captured by the sensor as a background image and masking out parts of the clothing by checking for occlusion by the user avatar also has some limitations. First, because the mesh of the user avatar is constructed from primitive shapes it does not correspond exactly to the user's shape and thus the masked image includes parts of the body which should not be displayed and clips off parts which should be. Secondly, since other objects from the user's environment have no mesh representation they are not used in this masking process and can not occlude the clothing. As a result the clothing might be projected over an object which occludes the user and should thus occlude the clothing. The Kinect sensor outputs the color and depth of each pixel, thus a simple solution would be to display the image not as a background image but by using a pixel shader which writes each pixel's color value into the depth buffer and should thus occlude parts of the virtual objects which are behind it in the depth buffer.
 
-Although the size estimation does work well under a simple algorithm, it will be much harder to estimate the true girth not knowing what clothing the user is wearing, and how much distance there is between the clothes and the user body (sloppy vs. tight clothing). And because the kinect can only see the front side of the body, it has to estimate the back. 
-Accuracy might increase by using a large dataset of trainings data and a linear regressing classifier to estimate the girth.
+Although the size estimation does work well under a simple algorithm, it will be much harder to estimate the true girth not knowing what clothing the user is wearing, and how much distance there is between the clothes and the user body (sloppy vs. tight clothing). And because the Kinect can only see the front side of the body, it has to estimate the back. 
+Accuracy might increase by using a large dataset of trainings data and linear regression methods to estimate the girth.
 
 A last point of discussion is that in the current application very simple 3D models of clothing are used. The clothing should have the same fit as real clothing. Also the clothing for now has one color, without texture. With correct fit and texture added to the clothing, our application will be more realistic.
 
@@ -236,6 +227,9 @@ A last point of discussion is that in the current application very simple 3D mod
 
 This report has presented an augmented reality application in which users can select and try on virtual clothes. These clothes are rendered on a screen over the image of the user and the lighting of the rendered clothing is adapted to match the light intensity of the user's environment. The main features of this application, corresponding to the goals in section \ref{sec:project_goals}, are as follows:
 \begin{itemize}
+\setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
 \item The clothing is correctly aligned with the user's position and movement by skinning the clothing models to a skeleton rig which is controlled by the Kinect sensor's skeleton tracking.
 \item The clothing moves and folds realistically by applying Unity's clothing simulation to the clothing models.
 \item The clothing is realistically rendered by adapting the light intensity in the virtual scene to match the user's environment and by masking out the parts of the rendered clothing which would be occluded by the user.
