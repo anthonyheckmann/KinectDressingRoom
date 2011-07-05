@@ -1,9 +1,9 @@
 Kinect Dressing Room
 --------------------
-By	 	
-		Fedde Burgers
-		Morris Franken
-		Carsten van Weelden
+By:	 	
+		Fedde Burgers   
+		Morris Franken   
+		Carsten van Weelden   
 
 Download
 --------
