@@ -6,17 +6,17 @@ By	 	Fedde Burgers
 
 Download
 --------
-[Source code][dl]
-[dl]: https://github.com/cvanweelden/Kinect-DressingRoom/zipball/master
+[Source code][dl1]
+[dl1]: https://github.com/cvanweelden/Kinect-DressingRoom/zipball/master
 
-[Demo movie 1][dl]
-[dl]: https://github.com/downloads/cvanweelden/Kinect-DressingRoom/morris_dress0003.avi
+[Demo movie 1][dl2]
+[dl2]: https://github.com/downloads/cvanweelden/Kinect-DressingRoom/morris_dress0003.avi
 
-[Demo movie 2][dl]
-[dl]: https://github.com/downloads/cvanweelden/Kinect-DressingRoom/dressingRoom_Fedde.wmv
+[Demo movie 2][dl3]
+[dl3]: https://github.com/downloads/cvanweelden/Kinect-DressingRoom/dressingRoom_Fedde.wmv
 
-[Report][dl]
-[dl]: http://cloud.github.com/downloads/cvanweelden/Kinect-DressingRoom/KinectDressingRoom-report.pdf
+[Report][dl4]
+[dl4]: http://cloud.github.com/downloads/cvanweelden/Kinect-DressingRoom/KinectDressingRoom-report.pdf
 
 
 Description
