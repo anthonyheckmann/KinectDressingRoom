@@ -1,7 +1,9 @@
 Kinect Dressing Room
 --------------------
 By	 	Fedde Burgers
+
 		Morris Franken
+		
 		Carsten van Weelden
 
 Download
@@ -25,6 +27,7 @@ The Kinect Dressing Room is a project in which a user is able to try on clothes
 virtually using the Kinect. In the downloadable source code above an executable is 
 provided. Opening this with a Kinect connected to your computer, allows you to try 
 the Kinect Dressing Room yourself:
+- When starting the application, choose a 4:3 resolution.
 - Calibrate by taking the calibration pose for the Kinect.
 - After the indicator turns green, hand icons will appear.
 - Select and deselect clothing by hover over the buttons on the left.
