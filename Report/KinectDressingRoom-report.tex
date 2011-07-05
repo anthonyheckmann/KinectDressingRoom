@@ -11,6 +11,8 @@
 
 \author{Fedde Burgers \\ 5705509 \\ \texttt{f.j.b.burgers@uva.nl} \and Morris Franken \\ 6151825 \\ \texttt{morrisef@science.uva.nl} \and Carsten van Weelden \\ 0518824 \\ \texttt{cweelden@science.uva.nl}}
 
+\hyphenation{re-commend}
+
 \begin{document}
 
 \maketitle
@@ -88,12 +90,12 @@ In the FaceCake dressing room the clothing is always in front of the user. A mor
 \section{Implementation}
 \label{sec:implementation}
 
-During this project we have created an augmented reality application in which the user can try on virtual clothes. We use the Kinect sensor for pose tracking, which is described in section \ref{sec:user_tracking}. For rendering the clothes in the user's environment we use the Unity game engine\footnote{\url{http://unity3d.com/}}. The virtual clothes and the way we render them is described in section \ref{sec:virtual_clothes}.
+During this project we have created an augmented reality application in which the user can try on virtual clothes. We use the Kinect sensor for pose tracking, which is described in section \ref{sec:user_tracking}. For rendering the clothes in the user's environment we use the Unity game engine\footnote{\url{http://unity3d.com/}}. The virtual clothes and the way we render them is described in section \ref{sec:virtual_clothes}. The following two sections \ref{sec:light_conditions} and \ref{sec:bodypart_masking} describe our solutions for the light conditions and how body parts are shown when in front of the clothing. An overview of the current application is given in section \ref{sec:application_overview}.
 
 \subsection{User tracking}
 \label{sec:user_tracking}
 
-The Kinect sensor is equipped with a RGB and depth camera. The user tracking included in the OpenNI framework \footnote{\url{http://www.openni.org/}} uses the depth camera information to find one or more users. When the user stands in the calibration pose the user tracker finds the user's simplified skeleton as is given in \ref{fig:skeleton}. The 3D positions of the joints are returned along with their rotation. With this information the skeleton for the 3D avatar in Unity is known. But for the alignment of the clothing with the user's body the skeleton alone is not sufficient. The exact sizes of each bodypart should be approximated.
+The Kinect sensor is equipped with a RGB and a depth camera. The user tracking included in the OpenNI framework\footnote{\url{http://www.openni.org/}} uses the depth camera information to find one or more users. When the user stands in the calibration pose the user tracker finds the user's simplified skeleton as is given in figure \ref{fig:skeleton}. The 3D positions of the joints are returned along with their rotation. With these positions and rotations all the information to create the skeleton for the 3D avatar in Unity are available.  But for the alignment of the clothing with the user body the skeleton alone is not sufficient. The exact sizes of each bodypart should be approximated.
 
  \begin{figure}[htp]
 \centering
@@ -121,19 +123,18 @@ The girth can be measured by two methods:
 \item Taking 3 points (outer left, centre and outer right) and compute the distance between those
 \end{itemize}
 Although the first solution seems the best, it is not robust to a noisy sensor and cloth folding. Even the slightest fold will drastically increase the users estimated girth.
-The second option, although no ideal, proved more accurate than the first method.
+The second option, although not ideal, proved more accurate than the first method.
 
-Because we can only see the front part of the user body, we have to estimate the full girth. This is done by multiplying the front part with a factor 2.1.
-Before giving the estimate size of the user, we take the average over 20 frames before drawing an conclusion.
+Because only the front part of the user body can be seen, we have to estimate the full girth. This is done by multiplying the front part with a factor 2.1. Before giving the estimated size of the user, an average over 20 frames is taken.
 
 
 \subsection{Virtual clothes}
 \label{sec:virtual_clothes}
-With the 3D avatar of the user the next step in our implementation is to dress this avatar. 3D Meshes of clothing are made in Blender and imported in Unity. Unity provides 2 different clothing components that can be added to a mesh: interactive cloth and skinned cloth. Both components have features such as stretch, damping and thickness to give a real clothing experience.
+With the 3D avatar of the user the next step in our implementation is to dress this avatar. 3D Meshes of clothing are made in Blender and imported in Unity. Unity provides 2 different cloth components that can be added to a mesh: interactive cloth and skinned cloth. Both components have features such as stretch, damping and thickness to give a real clothing experience.
 
 \subsubsection{Interactive cloth}
 \label{sec:interactive_cloth}	
-Since the release of Unity 3.0 the interactive cloth is included as alternative for skinned cloth. This component turns every possible mesh into a cloth and interacts with colliders. By making the bodyparts of the user's avatar colliders, an interactive clothing should be interacting just like in reality. Interactive cloth seemed therefore a very good and realistic option for our virtual dressing room. The full interaction with environment and user body has a downside though: it is computationally complex. Besides that we experienced an incorrectly big response of the interactive cloth to the user body, resulting in catapulted clothing. These cons could be caused by the short time interactive cloth exist. If the last con is corrected, we think interactive cloth is more realistic than skinned cloth. For now however it is not useful in our implementation.
+Since the release of Unity 3.0 the interactive cloth is included as alternative for skinned cloth. This component turns every possible mesh into a cloth and interacts with colliders and other environment factors. Interactive cloth is therefore also usable for flags, nets and even balls. By making the bodyparts of the user's avatar colliders, an interactive clothing should be interacting just like in reality. Interactive cloth seemed a very good and realistic option for our virtual dressing room. The full interaction with environment and user body has a downside though: it is computationally complex. Besides that we experienced an incorrectly big response of the interactive cloth to the user body, resulting in catapulted clothing. These cons could be caused by the short time interactive cloth exist. If the last con is corrected, we think interactive cloth is more realistic than skinned cloth. For now however it is not usable in our implementation.
 	 	
 \subsubsection{Skinned cloth}
 \label{sec:skinned_cloth}	 	
@@ -141,12 +142,12 @@ Skinned cloth operates very different. This component works in combination with 
 
 \subsection{Light conditions}
 \label{sec:light_conditions}
-To create of more realistic scene we measure the light conditions of the RGB image. This is done by converting the image to an HSV image and take an average of the intensity from the user.
-A point light in Unity will try to recreate the right light conditions.
+To create a more realistic scene we measure the light conditions of the RGB image. This is done by converting the image to an HSV image and take an average of the intensity from the user.
+A point light in Unity recreates the light conditions.
 
 \subsection{Body part masking}
 \label{sec:bodypart_masking}
-In section \ref{sec:related_work} is mentioned that the state of the art virtual dressing room by FaceCake does not provide a solution for body parts that should appear in front of the clothing. In our implementation the 3D information for the avatar and the clothing is available to make this more realistic. Unity gives a solution by depth masking shaders. For the body parts a material with masking shaders is selected and the clothing gets a material that is masked when behind the body parts. And as the RGB image is displayed in the back of the clothing, the body part is now shown as if it is in front of the clothing (Figure \ref{fig:shader}).
+In section \ref{sec:related_work} is mentioned that the state of the art virtual dressing room by FaceCake does not provide a solution for body parts that should appear in front of the clothing. In our implementation the 3D information for the avatar and the clothing is available to counter this problem. Unity gives a solution by depth masking shaders. For the body parts a material with masking shaders is selected and the clothing gets a material that is masked when behind the body parts. And as the RGB image is displayed in the back of the clothing, the body part is now shown as if it is in front of the clothing (Figure \ref{fig:shader}).
 
  \begin{figure}[htp]
 \centering
@@ -158,7 +159,7 @@ In section \ref{sec:related_work} is mentioned that the state of the art virtual
 
 \subsection{Application overview}
 \label{sec:application_overview}
-The GUI of the virtual dressing room consists of an RGB image, 3 buttons and a calibration progress marker. To use the application the user first has to calibrate with the system. This is done by taking the calibration pose (Figure ~\ref{fig:calibrationPose}), it will take a few secondes before the system is calibrated. The marker on the top right of the screen will display the calibration progress (Figure ~\ref{fig:progressmarker}).
+The GUI of the virtual dressing room consists of an RGB image, 3 buttons and a calibration progress marker. To use the application the user first has to calibrate with the system. This is done by taking the calibration pose (Figure \ref{fig:calibrationPose}), it will take a few secondes before the system is calibrated. The marker on the top right of the screen will display the calibration progress (Figure \ref{fig:progressmarker}).
 \begin{figure}[h!]
 \centering
 	\subfigure[looking for user] {
@@ -184,14 +185,14 @@ The GUI of the virtual dressing room consists of an RGB image, 3 buttons and a c
 \label{fig:calibrationPose}
 \end{figure}
 
-When the calibration step is completed the user can change their clothing by activating or deactivating the available buttons on the screen. This can be done by hovering either the left or right hand over the button.
+When the calibration step is completed the user can change the clothing by activating or deactivating the available buttons on the screen. This can be done by hovering either the left or right hand over the button.
 Items currently available in this project:
 \begin{itemize}
 \item Jacket.
 \item Pants 
 \item Dress.
 \end{itemize}
-Here a few examples of users wearing the virtual clothes.
+Figure \ref{fig:jacket_morris} and \ref{fig:dress_fedde} show a few examples of users wearing the virtual clothes.
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.5\textwidth]{GUI_jacket_morris.png} 
@@ -215,11 +216,10 @@ For any augmented reality application it is important to have realistic interact
 
 Our approach to display the RGB image captured by the sensor as a background image and masking out parts of the clothing by checking for occlusion by the user avatar also has some limitations. First, because the mesh of the user avatar is constructed from primitive shapes it does not correspond exactly to the user's shape and thus the masked image includes parts of the body which should not be displayed and clips off parts which should be. Secondly, since other objects from the user's environment have no mesh representation they are not used in this masking process and can not occlude the clothing. As a result the clothing might be projected over an object which occludes the user and should thus occlude the clothing. The Kinect sensor outputs the color and depth of each pixel, thus a simple solution would be to display the image not as a background image but by using a pixel shader which writes each pixel's color value into the depth buffer and should thus occlude parts of the virtual objects which are behind it in the depth buffer.
 
-Although the size estimation does work well under a simple algorithm, it will be much harder to estimate the true girth. not knowing what clothing the user is wearing, and how much distance there is between the clothes and the user body (sloppy vs. tight clothing). And because the kinect can only see the front side of the body, it has to estimate the back. 
+Although the size estimation does work well under a simple algorithm, it will be much harder to estimate the true girth not knowing what clothing the user is wearing, and how much distance there is between the clothes and the user body (sloppy vs. tight clothing). And because the kinect can only see the front side of the body, it has to estimate the back. 
 Accuracy might increase by using a large dataset of trainings data and a linear regressing classifier to estimate the girth.
 
-
-Kleding zou meer realistisch zijn met hulp van 3d artists (textures, pasvorm)
+A last point of discussion is that in the current application very simple 3D models of clothing are used. The clothing should have the same fit as real clothing. Also the clothing for now has one color, without texture. With correct fit and texture added to the clothing, our application will be more realistic.
 
 \section{Conclusion}
 \label{sec:conclusion}
